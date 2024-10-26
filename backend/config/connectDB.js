@@ -6,6 +6,7 @@ export const dbConnect =async () => {
        await mongoose.connect(process.env.MONGODB_SECURE)
        console.log("mongodb connected successfully")
     }catch(err){
-        throw err
+        
+        console.log(err)
     }
 }
