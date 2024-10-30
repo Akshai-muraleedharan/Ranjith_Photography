@@ -28,3 +28,25 @@
     width: 100%;
     height: 80vh;
 }
+
+
+.tablet_view{
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    width: 300px;
+    height: 60vh;
+    transform: rotate(5deg);
+}
+
+@media only screen and (min-width: 768px) {
+    .hero_image{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .tablet_Container{
+        display: none;
+    }
+}
