@@ -27,7 +27,13 @@
     background-repeat: no-repeat !important;
     width: 100%;
     height: 80vh;
+    z-index: 1;
 }
+
+
+
+
+
 
 
 .tablet_view{
