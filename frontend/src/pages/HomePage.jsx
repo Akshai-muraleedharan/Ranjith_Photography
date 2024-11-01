@@ -1,11 +1,12 @@
 import React from 'react'
 import HeroSection from '../components/sections/HeroSection'
+import PlanSection from '../components/sections/PlanSection'
 
 function HomePage() {
   return (
     <>
     <HeroSection/>
-    <div className='h-4 '>ddsdsadsa</div>
+    <PlanSection/>
     </>
   )
 }

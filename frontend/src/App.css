@@ -49,10 +49,15 @@
     .hero_image{
         display: none;
     }
+    .image_overlay{
+        display: none;
+      }
 }
 
 @media only screen and (max-width: 767px) {
     .tablet_Container{
         display: none;
     }
+   
+
 }

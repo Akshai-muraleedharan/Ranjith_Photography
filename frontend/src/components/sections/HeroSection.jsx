@@ -5,7 +5,7 @@ function HeroSection() {
     <div className='relative'>
         {/* for mobile view */}
       <div className='hero_image ' style={{background:`url(${images})`}}>
-      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-overlay bg-opacity-60 image_overlay"></div>
         <div className='flex justify-center'>
         <div className='absolute bottom-20 text-center w-full max-w-md '>
             
