@@ -29,6 +29,7 @@ function PlanCard() {
               </button>
               <dialog id="my_modal_3" className="modal">
                 <div className="modal-box">
+                  <h3 className="text-lg font-bold leading-5">{item.title}</h3>
                   <form method="dialog">
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                       ✕
@@ -36,9 +37,9 @@ function PlanCard() {
                   </form>
                   
                   <ul className="py-4 space-y-2">
-                   {item.features.map((modalList)=>(
-                    <li className="font-semibold">{modalList}</li>
-                   ))}
+                  {item.features.slice(7,item.features.length).map((list)=>(
+                    <li>{list}</li>
+                  ))}
                   </ul>
                 </div>
               </dialog>
