@@ -13,6 +13,10 @@ app.use(handleError)
 // db connect succesfully
 dbConnect()
 
+app.get('/',(req,res)=>{
+    res.send("hello")
+})
+
 app.use('/api',apiRouter)
 
 
