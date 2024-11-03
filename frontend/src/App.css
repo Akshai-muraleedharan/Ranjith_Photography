@@ -40,18 +40,23 @@
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
-    width: 300px;
-    height: 60vh;
-    transform: rotate(5deg);
+    width: 100%;
+    height: 80vh;
+    z-index: 1;
 }
 
 @media only screen and (min-width: 768px) {
     .hero_image{
         display: none;
     }
-    .image_overlay{
-        display: none;
-      }
+    
+      .image_overlay{
+        width: 100%;
+        height: 100%;
+        background: rgb(2,0,36);
+        background: linear-gradient(4deg, rgba(2,0,36,1) 0%, rgba(1,1,1,0.3477766106442577) 76%, rgba(1,1,1,0.5746673669467788) 98%);
+    }
+
 }
 
 @media only screen and (max-width: 767px) {
