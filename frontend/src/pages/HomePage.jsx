@@ -5,11 +5,11 @@ import ContactSection from '../components/sections/ContactSection'
 
 function HomePage() {
   return (
-    <>
+    <div className='bg-slate-100'>
     <HeroSection/>
     <PlanSection/>
     <ContactSection/>
-    </>
+    </div>
   )
 }
 
