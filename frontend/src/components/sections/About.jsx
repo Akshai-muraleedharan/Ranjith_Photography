@@ -2,7 +2,7 @@ import React from 'react'
 import {motion} from 'framer-motion'
 function About() {
   return (
-    <div className="py-10 px-10 max-[640px]:px-5 relative flex justify-center items-center gap-5 flex-col lg:h-[80vh] ">
+    <div className="py-10 px-10 max-[640px]:px-5 relative about_page flex justify-center items-center gap-5 flex-col lg:h-[90vh] ">
  
     <motion.h1 
     initial={{x:-100,opacity:0}}
