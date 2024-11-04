@@ -1,6 +1,7 @@
 import React from 'react'
 import images from '../../assets/image/IMG-20241014-WA0038.jpg'
 import TabletImage from '../../assets/image/IMG-20241103-WA0021.jpg'
+
 function HeroSection() {
   return (
     <div className='relative'>
@@ -10,7 +11,7 @@ function HeroSection() {
         <div className='flex justify-center'>
         <div className='absolute bottom-20 text-center w-full max-w-md '>
             
-        <h2 className='text-[30px] font-semibold text-white'>Capturing Moments</h2>
+        <h2  className='text-[30px] font-semibold text-white'>Capturing Moments</h2>
      <h3 className='mt-1 text-end mr-4 text-2xl font-semibold text-white'>Creating Memories</h3>
 
      <h4 className='text-[14px] mt-2 font-semibold text-end mr-5 text-white'>Ranjith Babu_Photography</h4>

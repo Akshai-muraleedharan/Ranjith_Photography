@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 function UserLayout() {
   return (
-  <div className='min-h-[100vh] flex flex-col'>
+  <div className='min-h-[100vh] flex flex-col relative'>
   
    <UserHeader/>
 

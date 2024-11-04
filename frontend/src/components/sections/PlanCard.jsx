@@ -1,8 +1,20 @@
 import React from "react";
 import { pricePlans } from "../../assets/data/pricePlan";
+import { motion } from "framer-motion";
+
 function PlanCard() {
   return (
-    <div className="grid lg:grid-cols-3 gap-8 mt-5 lg:mt-24">
+    <motion.div 
+    initial={{x:-100,opacity:0}}
+    whileInView={{x:0,opacity:1}}
+    viewport={{once:true}}
+      transition={{
+        delay:0.2,
+        x:{type:"spring",stiffness:"60"},
+        opacity:{duration:0.2},
+        ease:"easeIn",
+        duration:1
+      }} className="grid lg:grid-cols-3 gap-8 mt-5 lg:mt-24">
       {pricePlans.map((item) => (
         <div
           key={item.title}
@@ -49,7 +61,7 @@ function PlanCard() {
           )}
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 }
 
