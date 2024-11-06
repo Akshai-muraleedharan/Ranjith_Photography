@@ -15,12 +15,29 @@ const axiosInstance = axios.create({
 
     const response = await axiosInstance.get("/user/gallery")
 
-     return response.data.data
+     return response.data
 
    } catch (error) {
     console.error("Registration error:", error.response?.data || error.message);
     throw error
    }
  }
+
+ export const searchImage = async (data) => {
+  try {
+
+   const searchResponse = await axiosInstance.get("/user/search",{
+    params: {
+      image: data
+    }
+   })
+
+   return searchResponse.data
+
+  } catch (error) {
+   console.error("Registration error:", error.response?.data || error.message);
+   throw error
+  }
+}
 
  

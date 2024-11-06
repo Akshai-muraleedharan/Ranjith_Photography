@@ -7,7 +7,7 @@ import bookModel from "../model/userBookModel.js";
     try {
        const fetchGallery = await gallery.find().select("-publicId");
        res.setHeader('Content-Disposition', 'inline');
-       res.status(200).json({success:true,message:"successfully fetched",data:fetchGallery})
+       res.status(200).json({success:true,message:"successfully fetched",data:fetchGallery,dataLength:fetchGallery.length})
     } catch (error) {
         next(error)
     }
@@ -46,14 +46,14 @@ import bookModel from "../model/userBookModel.js";
 
       const {image} = req.query
 
-      console.log(image)
-      if(image == "marriage" || image == "save the date"){
-        const fetchSearchGallery = await gallery.find({imageType:image}).select("-publicId");
-        res.status(200).json({success:true,message:"data successfully fetched",data:fetchSearchGallery})
-        
-      }else{
-        return res.status(400).json({success:false,message:"no data found"})
-      }
+   
+    
+      const fetchSearchGallery = await gallery.find({imageType:image}).select("-publicId");
+      res.status(200).json({success:true,message:"data successfully fetched",data:fetchSearchGallery,dataLength:fetchSearchGallery.length})
+     
+       
+         
+      
       
     } catch (error) {
       next(error)
