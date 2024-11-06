@@ -39,3 +39,23 @@ import bookModel from "../model/userBookModel.js";
       next(error)
     }
   }
+
+
+  export const searchImage = async (req,res,next) => {
+    try {
+
+      const {image} = req.query
+
+      console.log(image)
+      if(image == "marriage" || image == "save the date"){
+        const fetchSearchGallery = await gallery.find({imageType:image}).select("-publicId");
+        res.status(200).json({success:true,message:"data successfully fetched",data:fetchSearchGallery})
+        
+      }else{
+        return res.status(400).json({success:false,message:"no data found"})
+      }
+      
+    } catch (error) {
+      next(error)
+    }
+  }
