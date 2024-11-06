@@ -87,3 +87,24 @@
 
 /* gallery */
 
+.animate_button{
+    animation-name: example;
+  animation-duration: 4s;
+}
+
+
+@keyframes example {
+    from {
+      transform: translateX(-100px); /* Move the element off-screen */
+    }
+    to {
+      transform: translateX(0); /* Return to the original position */
+    }
+  }
+
+  .gallery_image_overlay{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    
+  }

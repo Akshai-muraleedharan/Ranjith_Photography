@@ -11,7 +11,7 @@ function GalleryComponent() {
   const [loading,setLoading] = useState(false)
   const [btnLoading,setBtnLoading] = useState(false)
 
-console.log(loading)
+
    const fetchUserGallery = async () => {
     try {
       setLoading(true)
@@ -24,6 +24,10 @@ console.log(loading)
     }
    } 
 
+    const imagePopUp = (image,id) => {
+   console.log("image:",image,"id:",id)
+    }
+
    useEffect(() => {
     fetchUserGallery()
     setTimeout(()=>{
@@ -32,7 +36,9 @@ console.log(loading)
    },[])
 
   return (
-   loading ?  "Loading " : <div className='p-3'>
+   loading ?  <div>
+    <h1 className='text-center font-semibold flex justify-center gap-1 items-center'><span className="loading loading-spinner loading-sm"></span>Loading... </h1>
+   </div> : <div className='p-3'>
      
     
         <ResponsiveMasonry
@@ -42,9 +48,10 @@ console.log(loading)
      columnWidth: 1,
   }}>
                    {gallery.map((image)=>(
-                   <div className='relative'>
+                    <div className='relative overflow-hidden'>
+                      <div className='gallery_image_overlay'></div>
                      <img className='block w-full' src={image.ImageUrl} alt=""  loading="lazy" />
-                    { btnLoading ?  <h1 className='absolute top-2 left-3 py-1 px-2 rounded bg-gradient-to-r from-black font-semibold text-white'>View</h1> : ""}
+                    { btnLoading ?  <button onClick={()=> imagePopUp(image.ImageUrl,image._id)} className='animate_button absolute top-2 left-3 py-1 px-2 rounded bg-gradient-to-r from-black font-semibold text-white'>View</button> : ""}
                    </div>
                    ))}
                 </Masonry>
