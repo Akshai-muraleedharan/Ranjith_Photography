@@ -34,7 +34,7 @@ console.log(gallery)
      columnWidth: 1,
   }}>
                    {gallery.map((image)=>(
-                    <img className='block w-full' src={image.ImageUrl} alt=""  />
+                    <img className='block w-full' src={image.ImageUrl} alt=""   />
                    ))}
                 </Masonry>
             </ResponsiveMasonry>
