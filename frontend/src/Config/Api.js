@@ -7,7 +7,7 @@ import axios from 'axios'
 const axiosInstance = axios.create({
   baseURL:API_URL,
   withCredentials:true
-})
+}) 
 
 
  export const galleryImage = async () => {
