@@ -13,8 +13,11 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(handleError)
 
+const domain_Url = process.env.FRONTEND_CONNECT
+
 app.use(cors({
-    origin: 'http://localhost:5173', 
+ origin: domain_Url, 
+    
     credentials:true
 }))
 
