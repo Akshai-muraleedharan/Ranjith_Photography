@@ -1,77 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { galleryImage } from '../../Config/Api'
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
+
+
+// import plugins if you need
 
 function GalleryComponent() {
+
+  const [gallery,setGallery] = useState([])
+
+console.log(gallery)
+
+   const fetchUserGallery = async () => {
+    try {
+        const fetchResponse = await galleryImage() 
+
+        setGallery(fetchResponse)
+    } catch (error) {
+        console.error( error.response?.data || error.message);
+    }
+   } 
+
+   useEffect(() => {
+    fetchUserGallery()
+   },[])
+
   return (
-   <div>
-
-    
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-2 p-2 md:px-10">
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt=""/>
-        </div>
+    <div className='p-3'>
+        <ResponsiveMasonry
+                columnsCountBreakPoints={{320: 1, 750: 2, 900: 3}}
+            >
+                <Masonry gutter='20px'  options={{
+     columnWidth: 1,
+  }}>
+                   {gallery.map((image)=>(
+                    <img className='block w-full' src={image.ImageUrl} alt=""  />
+                   ))}
+                </Masonry>
+            </ResponsiveMasonry>
     </div>
-
-
-    
-{/* 
-<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-    <div className="grid gap-4">
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt=""/>
-        </div>
-    </div>
-    <div className="grid gap-4">
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" alt=""/>
-        </div>
-    </div>
-    <div className="grid gap-4">
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" alt=""/>
-        </div>
-    </div>
-    <div className="grid gap-4">
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt=""/>
-        </div>
-        <div>
-            <img className="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" alt=""/>
-        </div>
-    </div>
-</div> */}
-
-   </div>
   )
 }
 
