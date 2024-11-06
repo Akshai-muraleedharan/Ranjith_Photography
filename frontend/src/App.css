@@ -108,3 +108,47 @@
     position: absolute;
     
   }
+
+  img {
+    pointer-events: none;
+  }
+
+  .model_overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow-y: hidden;
+  }
+
+  .modal-image {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  .modal_content{
+    position: 'relative';
+    background: 'white';
+    padding: '20px';
+    border-radius: '10px';
+    width: '90%';
+    max-Width: '800px';
+    max-Height: '90vh'; 
+    overflow: 'hidden'; 
+    text-align: 'center';
+  }
+
+
+  @media only screen and (max-width: 767px) {
+    .model_overlay{
+        padding:0px 10px 0px 10px;
+    }
+  }
