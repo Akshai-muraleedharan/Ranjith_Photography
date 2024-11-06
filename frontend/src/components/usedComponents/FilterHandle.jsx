@@ -36,9 +36,7 @@ function FilterHandle({setGallery}) {
               console.error( error.response?.data || error.message);
           }
     }
-    useEffect(()=>{
-        handleFilter()
-    },[])
+  
    
   return (
     <div>

@@ -14,7 +14,7 @@ const axiosInstance = axios.create({
    try {
 
     const response = await axiosInstance.get("/user/gallery")
-
+    
      return response.data
 
    } catch (error) {
@@ -31,7 +31,7 @@ const axiosInstance = axios.create({
       image: data
     }
    })
-
+   
    return searchResponse.data
 
   } catch (error) {
