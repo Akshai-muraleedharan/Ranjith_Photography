@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { galleryImage } from '../../Config/Api'
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import FilterHandle from './FilterHandle'
+import LoadingComponent from './LoadingComponent'
 
 
 // import plugins if you need
@@ -21,7 +22,7 @@ function GalleryComponent() {
         const fetchResponse = await galleryImage() 
 
         setGallery(fetchResponse.data)
-        setLoading(false)
+         setLoading(false)
     } catch (error) {
         console.error( error.response?.data || error.message);
     }
@@ -56,12 +57,12 @@ function GalleryComponent() {
   //   };
   // }, []);
 
+ 
+
   return (
-   loading ?  <div className='overflow-hidden'>
-    <h1 className='text-center font-semibold flex justify-center gap-1 items-center'><span className="loading loading-spinner loading-sm"></span>Loading... </h1>
-   </div> : <div className='p-3'>
+   loading ? <LoadingComponent/>  : <div className='p-3'>
        
-      <FilterHandle setGallery={setGallery} />
+      <FilterHandle setGallery={setGallery}  />
     
         <ResponsiveMasonry
                 columnsCountBreakPoints={{320: 1, 750: 2, 900: 3}}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function UserHeader() {
   return (
@@ -10,8 +10,12 @@ function UserHeader() {
 
         <nav className='items:center flex'>
         <ul className='flex gap-4 '>
-            <Link to={'/'} className='text-white nav-item text-[14px]'>Home</Link>
-            <Link to={'gallery'} className='text-white nav-item text-[14px]'>Gallery</Link>
+            <NavLink
+            style={({isActive}) => {return {color : isActive ?  "skyblue" : ""}}}
+             to={'/'} className='text-white nav-item text-[14px]'>Home</NavLink>
+            <NavLink 
+              style={({isActive}) => {return {color : isActive ? "skyblue" : ""}}}
+             to={'gallery'} className='text-white nav-item text-[14px]'>Gallery</NavLink>
         </ul>
         </nav>
     </header>

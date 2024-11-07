@@ -153,7 +153,7 @@ import jwt from 'jsonwebtoken'
     export const deleteImage = async (req,res,next) => {
         
         try {
-
+ 
              const {imageID} = req.params
 
              const fetchImage = await gallery.findByIdAndDelete(imageID)
@@ -166,7 +166,7 @@ import jwt from 'jsonwebtoken'
                                     })
             const result = deleteResult.result
          
-
+ 
             if(result === "ok"){
                 res.status(200).json({success:true,message:"image delete successfully"})
             }
