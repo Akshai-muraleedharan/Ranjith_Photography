@@ -16,6 +16,7 @@ function UserHeader() {
             <NavLink 
               style={({isActive}) => {return {color : isActive ? "skyblue" : ""}}}
              to={'gallery'} className='text-white nav-item text-[14px]'>Gallery</NavLink>
+            
         </ul>
         </nav>
     </header>

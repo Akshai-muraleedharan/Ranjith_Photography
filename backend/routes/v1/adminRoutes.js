@@ -5,7 +5,7 @@ import { imageChecker } from '../../middleware/imageFileCheck.js'
 import checkError from '../../middleware/loginAndSignupError.js'
 import { authAdmin } from '../../middleware/AdminAuth.js'
 
-const router = express.Router()
+const router = express.Router() 
 
 router.post('/register',checkError,adminRegister)
 router.post('/login',adminLogin)

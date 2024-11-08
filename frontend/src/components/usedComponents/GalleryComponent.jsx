@@ -36,7 +36,7 @@ function GalleryComponent() {
     }
 
     const CloseModel = () => {
-      setImageData('')
+       setImageData('')
       document.body.style.overflow = '';
     }
 
