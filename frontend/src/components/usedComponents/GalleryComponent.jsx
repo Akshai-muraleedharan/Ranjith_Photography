@@ -28,6 +28,8 @@ function GalleryComponent() {
     }
    } 
 
+  
+
     const imagePopUp = (image) => {
    setImageData(image)
    document.body.style.overflow = 'hidden';
@@ -63,13 +65,14 @@ function GalleryComponent() {
    loading ? <LoadingComponent/>  : <div className='p-3'>
        
       <FilterHandle setGallery={setGallery}  />
-    
+  
         <ResponsiveMasonry
                 columnsCountBreakPoints={{320: 1, 750: 2, 900: 3}}
             >
                 <Masonry gutter='20px'  options={{
      columnWidth: 1,
   }}>
+         
                    {gallery.map((image)=>(
                     <div className='relative overflow-hidden'>
                       <div className='gallery_image_overlay'></div>
@@ -78,12 +81,14 @@ function GalleryComponent() {
                     { btnLoading ?  <button onClick={()=> imagePopUp(image.ImageUrl)} className='animate_button absolute top-2 left-3 py-1 px-2 rounded bg-gradient-to-r from-black font-semibold text-white'>View</button> : ""}
                    </div>
                    ))}
+               
                 </Masonry>
             </ResponsiveMasonry>
 
+
             {imageData && (
               <div className='model_overlay'>
-                 <button onClick={CloseModel} className='absolute text-white top-3 right-8 border-none text-[19px] font-semibold '>X</button>
+                 <button onClick={CloseModel} className='close_button '>X</button>
                  <div className="modal_content" onClick={(e) => e.stopPropagation()}>
                 
                  <img src={imageData} className="modal-image"/>

@@ -16,6 +16,14 @@ const gallerySchema = mongoose.Schema({
     },
     ImageUrl:{
         type:String
+    },
+    bgType:{
+        type:Boolean,
+        default:false
+    },
+    screenType:{
+        type:String,
+        default:"Nil"
     }
 })
 

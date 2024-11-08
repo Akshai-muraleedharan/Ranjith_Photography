@@ -1,12 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import images from '../../assets/image/IMG-20241014-WA0038.jpg'
 import TabletImage from '../../assets/image/IMG-20241103-WA0021.jpg'
+import { galleryImage } from '../../Config/Api'
+
 
 function HeroSection() {
-  return (
-    <div className='relative'>
+
+  const [fetchBg,setFetchBg] = useState([])
+ 
+  
+    const bgImage = async () => {
+      try {
+       
+        const response = await galleryImage()
+        setFetchBg(response.data)
+       
+      } catch (error) {
+        console.error("Registration error:", error.response?.data || error.message);
+        throw error
+      }
+    } 
+
+    useEffect(()=>{
+      bgImage()
+    },[])
+
+   return (
+     <div className='relative'>
         {/* for mobile view */}
-      <div className='hero_image ' style={{background:`url(${images})`}}>
+      <div className='hero_image ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
       <div className="  image_overlay"></div>
         <div className='flex justify-center'>
         <div className='absolute bottom-20 text-center w-full max-w-md '>
@@ -21,16 +43,10 @@ function HeroSection() {
       </div>
     
     <div className='tablet_Container relative'>
-        {/* text container */}
-        {/* <div className='flex flex-col justify-center'>
-        <h2 className='text-4xl font-bold lg:text-6xl'>Capturing Moments</h2>
-     <h3 className='mt-1 text-end mr-4 text-2xl font-bold lg:text-4xl lg:mt-2'>Creating Memories</h3>
-
-     <h4 className='text-[16px] mt-4 font-semibold text-end'>Ranjith Babu_Photography</h4>
-        </div> */}
+       
 
        
-        <div className='tablet_view  ' style={{background:`url(${TabletImage})`}}>
+        <div className='tablet_view  ' style={{background:`url(${fetchBg.find((img) => img.screenType === "tablet" && img.ImageUrl)?.ImageUrl || TabletImage})`}}>
         <div className="  image_overlay"></div>
       <div className='absolute bottom-[10%] flex justify-center flex-col items-center w-full text-white'>
             <h2 className='text-4xl font-bold md:text-4xl lg:text-6xl'>Capturing Moments</h2>

@@ -40,4 +40,22 @@ const axiosInstance = axios.create({
   }
 }
 
+export const formData = async (data) => {
+  try {
+   
+    const searchResponse = await axiosInstance.post("/user/contact",{
+      fullname:data.fullname,
+      email:data.email,
+      phoneNumber:data.phoneNumber,
+      message:data.message
+    })
+return searchResponse.data
+    
+  } catch (error) {
+    console.error("Registration error:", error.response?.data || error.message);
+    
+   return error.response.data
+   
+  }
+}
  

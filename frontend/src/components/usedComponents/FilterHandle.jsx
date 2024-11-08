@@ -9,7 +9,7 @@ function FilterHandle({setGallery}) {
    const [active,setActive] =useState('allcategories')
    const [loading,setLoading] = useState(false)
    
- console.log(filter)
+ 
    
     const handleFilter = async (search) => {
         try {

@@ -126,7 +126,7 @@ import jwt from 'jsonwebtoken'
             try {
                 // data from client
             const imageName = req.file.originalname
-            const {imageType} = req.body
+            const {imageType,bgType,screenType} = req.body
             
             const result =  await  cloudinaryInstance.uploader.upload(req.file.path,{ folder: "photography/gallery" })
                             .catch((err)=>{
@@ -138,7 +138,10 @@ import jwt from 'jsonwebtoken'
                 imageName:imageName,
                 publicId:result.public_id,
                 imageType:imageType,
-                ImageUrl:result.url
+                ImageUrl:result.url,
+                bgType:bgType,
+                screenType:screenType
+                
 
             })
             await saveImage.save()
@@ -174,3 +177,19 @@ import jwt from 'jsonwebtoken'
             next(error) 
         }
     }
+
+   export const updateBg = async (req,res,next) => {
+    try {
+        const {imageId} = req.params
+        
+        const updateData = await gallery.findByIdAndUpdate(imageId,{
+            bgType:false,
+            screenType:"NIL"
+        }) 
+ 
+       
+        res.status(200).json({success:true,message:"photo data updated successfully"})
+    } catch (error) {
+        next(error)
+    } 
+   } 
