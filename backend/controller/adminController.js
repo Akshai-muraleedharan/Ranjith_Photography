@@ -5,7 +5,9 @@ import gallery from "../model/galleryModel.js"
 import validator from 'email-validator'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-        // admin register
+import cardModel from '../model/cardModel.js'
+
+// admin register
 
         export const adminRegister = async (req,res,next) => {
             try {
@@ -193,3 +195,90 @@ import jwt from 'jsonwebtoken'
         next(error)
     } 
    } 
+
+
+//    card 
+
+export const packageCard = async (req,res,next) => {
+   try{
+         const {plan,amount,features} = req.body
+
+         if(!plan || !amount || !features){
+            return res.status(400).json({success:false,message:"all fields required"})
+         }
+
+        const cardLength = await cardModel.find()
+      
+        if(cardLength.length >= 3){
+            return res.status(400).json({success:false,message:"Three card already exit"})
+        }
+
+         const cardData = await cardModel({
+            plan,
+            amount,
+            features
+         })
+
+         await cardData.save()
+
+         res.status(201).json({success:true,message:"Data added successfully"})
+   }catch(error){
+    next(error)
+   }
+}
+
+export const deleteCard =async ( req,res,next) => {
+    try{
+   const {cardId} = req.params
+
+   if(!cardId){
+    return res.status(400).json({success:false,message:"id not get"})
+   }
+
+   await cardModel.findByIdAndDelete(cardId)
+
+    res.status(200).json({success:true,message:"Card delete successfully"})
+    }catch(error){
+        next(error)
+    }
+}
+
+export const updateCard = async (req,res,next) =>{
+    try {
+        const {cardId} =req.params
+        const {plan,amount,features} = req.body
+
+
+        if(!cardId){
+            return res.status(400).json({success:false,message:"id not get"})
+           }
+
+        await cardModel.findByIdAndUpdate(cardId,{
+            plan,
+            amount,
+            features
+        },{new:true})
+        res.status(200).json({success:true,message:"Card update successfully"})
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const deletFeature = async (req,res,next) => {
+    try {
+        const {cardId} = req.params
+        const {feature} = req.body
+
+        if(!cardId){
+            return res.status(400).json({success:false,message:"id not get"})
+           }
+
+           await cardModel.findByIdAndUpdate(cardId, { $pull: { features: feature } },{new:true})
+
+           res.status(200).json({success:true,message:"feature delete successfully"})
+    } catch (error) {
+        next(error)
+    }
+}
+

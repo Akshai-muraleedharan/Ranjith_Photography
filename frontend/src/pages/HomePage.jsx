@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom'
 function HomePage() {
   return (
     <div className='bg-slate-100'>
-      <Link to={"https://wa.me/+919297160407"} className='whatsapp_float'>
+      <Link to={"https://wa.me/9297160407"} className='whatsapp_float'>
       <FaWhatsapp  className='whatsapp-icon'/>
       </Link>
     <HeroSection/>
     <About/>
     <PlanSection/>
-    <ContactSection/>
+    <ContactSection/> 
   
     </div>
   )

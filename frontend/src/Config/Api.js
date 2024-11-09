@@ -40,6 +40,16 @@ const axiosInstance = axios.create({
   }
 }
 
+export const cardData = async () => {
+  try {
+    const response = await axiosInstance.get("user/package")
+    return response.data.data
+  } catch (error) {
+    console.error("Registration error:", error.response?.data || error.message);
+  }
+}
+
+
 export const formData = async (data) => {
   try {
    

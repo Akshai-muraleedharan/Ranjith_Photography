@@ -1,3 +1,4 @@
+import cardModel from "../model/cardModel.js";
 import gallery from "../model/galleryModel.js";
 import bookModel from "../model/userBookModel.js";
 
@@ -57,3 +58,15 @@ import bookModel from "../model/userBookModel.js";
       next(error)
     }
   }
+
+
+  
+export const getCard = async (req,res,next) => {
+  try {
+      const fetchCard = await cardModel.find()
+
+      res.status(200).json({success:true,message:"data fetched",data:fetchCard})
+  } catch (error) {
+      next(error)
+  }
+}
