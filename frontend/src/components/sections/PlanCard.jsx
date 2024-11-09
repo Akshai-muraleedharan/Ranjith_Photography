@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { pricePlans } from "../../assets/data/pricePlan";
 import { motion } from "framer-motion";
-import { cardData } from "../../Config/Api";
+import { cardData } from "../../Config/userApi";
+
 
 function PlanCard() {
   const[card,setCard] =useState([])

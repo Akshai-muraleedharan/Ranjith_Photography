@@ -1,6 +1,7 @@
 import React, {   useState } from 'react'
-import { galleryImage, searchImage } from '../../Config/Api'
+
 import LoadingComponent from './LoadingComponent'
+import { galleryImage, searchImage } from '../../Config/userApi'
 
 
 

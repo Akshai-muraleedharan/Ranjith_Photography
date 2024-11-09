@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { formData } from "../../Config/Api";
 import toast, { Toaster } from 'react-hot-toast';
+import { formData } from "../../Config/userApi";
 
 function FormComponent() {
   const[errorData,setErrorData] = useState('')

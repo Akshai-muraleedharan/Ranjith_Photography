@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import images from '../../assets/image/IMG-20241014-WA0038.jpg'
 import TabletImage from '../../assets/image/IMG-20241103-WA0021.jpg'
-import { galleryImage } from '../../Config/Api'
+import { galleryImage } from '../../Config/userApi'
+
 
 
 function HeroSection() {

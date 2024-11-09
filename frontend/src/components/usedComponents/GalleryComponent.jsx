@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { galleryImage } from '../../Config/Api'
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import FilterHandle from './FilterHandle'
 import LoadingComponent from './LoadingComponent'
+import { galleryImage } from '../../Config/userApi'
 
 
 // import plugins if you need

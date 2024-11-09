@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import UserLayout from "../layout/UserLayout";
 import HomePage from "../pages/HomePage";
 import GalleryPage from "../pages/GalleryPage";
-import AdminLogin from "../components/admin/adminLogin";
+import AdminLogin from "../components/admin/AdminLogin";
 
 
 

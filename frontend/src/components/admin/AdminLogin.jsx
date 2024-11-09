@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-
+import background from '../../assets/image/loginPageBg.jpg'
 
 function AdminLogin() {
 
@@ -10,7 +10,7 @@ function AdminLogin() {
         console.log(data)
     }
   return (
-    <div className='my-auto'>
+    <div className='my-auto' >
         
  <h3 className='text-center font-semibold text-2xl'>Login</h3>
 <form className="max-w-sm p-5 mx-auto" onSubmit={handleSubmit(onSubmit)}>
