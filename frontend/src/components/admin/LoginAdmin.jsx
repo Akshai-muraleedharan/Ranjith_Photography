@@ -1,13 +1,26 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-import background from '../../assets/image/loginPageBg.jpg'
+import {useNavigate} from 'react-router-dom'
+import { adminLogin } from '../../Config/adminApi';
+import useAuthStore from '../../store/authStore';
 
-function AdminLogin() {
+
+function LoginAdmin() {
 
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
+    const setUser = useAuthStore((state) => state.setUser)
 
-    const onSubmit = (data) => {
-        console.log(data)
+
+    const onSubmit = async (data) => {
+     try {
+      const response = await adminLogin(data)
+      setUser(response)
+      navigate("/admin/home") 
+
+     } catch (error) {
+      console.error( error.response?.data || error.message);
+     }
     }
   return (
     <div className='my-auto' >
@@ -36,4 +49,4 @@ function AdminLogin() {
   )
 }
 
-export default AdminLogin
+export default LoginAdmin

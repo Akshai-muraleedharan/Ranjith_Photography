@@ -20,17 +20,17 @@ import cardModel from '../model/cardModel.js'
             const  emailTrim = email.trim()
             const  passwordTrim = password.trim()
             const isEmail = validator.validate(emailTrim)
-
+ 
             // check email is validate
             if(!isEmail){
                 return res.status(200).json({success:false,message:"email is not-valid"})
             }
 
             // to get admin length
-             const adminExist = await admin.find()
+             const adminExist = await admin.find() 
 
             // one admin can register
-            if(adminExist.length >= 1){
+            if(adminExist.length >= 2){
             return res.status(400).json({success:false,message:"only one admin can register"})
             }
 
@@ -64,6 +64,10 @@ import cardModel from '../model/cardModel.js'
             try {
                 // data from client
                 const {email,password} = req.body
+
+               if(!email,!password){
+                return res.status(400).json({success:false,message:"all fields required"})
+               }
                  // data space reduce
                 const  emailTrim = email.trim()
                 const  passwordTrim = password.trim()
@@ -111,6 +115,21 @@ import cardModel from '../model/cardModel.js'
                 next(error)
             }
         }
+
+        // authentication check
+        export const checkAdmin = async (req, res, next) => {
+            try {
+              // to check admin authenticate this value from token verification
+              const verifiedAdmin = req.admin;
+          
+              if (!verifiedAdmin) {
+                return res.status(400).json({ success: false, message: "admin not authenticated" });
+              }
+              res.json({ success: true, message: "admin authenticatd" });
+            } catch (error) {
+                next(error)
+            }
+          };
 
         // logout
         export const adminLogout =  (req,res,next) => {

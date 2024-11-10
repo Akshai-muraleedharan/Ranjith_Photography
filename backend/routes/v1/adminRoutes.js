@@ -1,5 +1,5 @@
 import express from 'express'
-import { addPhoto, adminLogin, adminLogout, adminProfile, adminRegister, deleteCard, deleteImage, deletFeature, packageCard, updateBg, updateCard } from '../../controller/adminController.js'
+import { addPhoto, adminLogin, adminLogout,checkAdmin, adminProfile, adminRegister, deleteCard, deleteImage, deletFeature, packageCard, updateBg, updateCard } from '../../controller/adminController.js'
 import { upload } from '../../middleware/imageUploadMiddleware.js'
 import { imageChecker } from '../../middleware/imageFileCheck.js'
 import checkError from '../../middleware/loginAndSignupError.js'
@@ -14,6 +14,7 @@ router.delete('/package/delete/:cardId',authAdmin,deleteCard)
 router.put('/package/update/:cardId',authAdmin,updateCard)
 router.put('/package/features/:cardId',authAdmin,deletFeature)
 router.get('/profile',authAdmin, adminProfile)
+router.get('/check',authAdmin, checkAdmin)
 router.post('/logout',authAdmin, adminLogout)
 router.post('/photo',authAdmin,upload.single('image'),imageChecker,addPhoto)
 router.put('/photo/update/:imageId',authAdmin,updateBg)
