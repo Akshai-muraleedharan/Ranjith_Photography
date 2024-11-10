@@ -1,7 +1,7 @@
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import useAuthStore from "../store/authStore";
 import { useEffect, useState } from "react";
 import { checkAdmin } from "../Config/adminApi";
+import useAuthStore from "../store/storeAuth";
 
 
 const PrivateRoute = ({ children }) => {

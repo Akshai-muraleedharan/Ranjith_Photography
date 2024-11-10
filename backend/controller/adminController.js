@@ -91,9 +91,9 @@ import cardModel from '../model/cardModel.js'
               const token=  jwt.sign(userExist.email,process.env.JWT_SECRET_KEY)
 
                 res.cookie('token',token,{
+                    sameSite: "None",
+                      secure: true,
                     httpOnly: true,
-                    sameSite: 'strict',
-                    maxAge: 30 * 24 * 60 * 60 * 1000,
                   })
                 res.status(200).json({success:true,message:"login successfully"})
             } catch (error) {
@@ -133,10 +133,7 @@ import cardModel from '../model/cardModel.js'
 
         // logout
         export const adminLogout =  (req,res,next) => {
-          res.cookie("token","",{
-            httyOnly: true,
-            expires: new Date(0),
-          })
+            res.clearCookie("token", { httpOnly: true, secure: true, sameSite: 'None' });
 
           res.status(200).json({success:true,message:"logout successfully"})
         }

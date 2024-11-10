@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import useAuthStore from '../../store/authStore';
+import useAuthStore from '../../store/storeAuth';
+
 
 function AdminSecureHeader() {
 
