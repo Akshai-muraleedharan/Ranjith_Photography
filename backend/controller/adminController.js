@@ -116,6 +116,56 @@ import cardModel from '../model/cardModel.js'
             }
         }
 
+        export const updateProfile =async (req,res,next) => {
+            try {
+                const {username,email} = req.body
+                const verifiedAdmin = req.admin;
+                
+               
+              
+             
+ 
+                await admin.findOneAndUpdate({email:verifiedAdmin},{
+                    username:username,
+                    email:email,
+                    
+                },{new:true})
+                res.status(200).json({success:true,message:"profile page updated successfully"})
+            } catch (error) {
+                next(error)
+            }
+        }
+
+        export const UpdatePassword = async(req,res,next) => {
+            try {
+                const {password,confirmPassword} = req.body
+                const verifiedAdmin = req.admin;
+
+                if(!password || !confirmPassword){
+                    return res.status(400).json({success:false,message:"All field required"})
+                }
+
+                if(password.trim() !== confirmPassword.trim()){
+                    return res.status(400).json({success:false,message:"Password not match"})
+                }
+
+                const  passwordTrim = password.trim()
+                 // salt round the password
+             const salt = bcrypt.genSaltSync(10)
+
+             //  hasedpassword 
+              const hasedPassword =  bcrypt.hashSync(passwordTrim,salt)
+
+                await admin.findOneAndUpdate({email:verifiedAdmin},{
+                   password:hasedPassword
+                    
+                },{new:true})
+                res.status(200).json({success:true,message:"Password updated successfully"})
+            } catch (error) {
+                next(error)
+            }
+        }
+
         // authentication check
         export const checkAdmin = async (req, res, next) => {
             try {

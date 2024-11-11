@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import useAuthStore from '../../store/storeAuth';
 
 
@@ -28,8 +28,8 @@ function AdminSecureHeader() {
              to={'/admin/gallery'} className='text-white nav-item text-[14px]'>Gallery</NavLink>
                   <div className="dropdown dropdown-bottom dropdown-end">
   <div tabIndex={0} role="button" className='text-white nav-item text-[14px]'>Admin</div>
-  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-    <li><p>profile</p></li>
+  <ul tabIndex={0} className="dropdown-content text-md menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+    <li><Link to={"/admin/profile"}>profile</Link></li>
     <li><p>Dashboard</p></li>
     <li><span onClick={logoutBtn}>log-out</span></li>
   </ul>

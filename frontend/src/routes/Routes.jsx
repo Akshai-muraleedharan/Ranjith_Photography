@@ -5,6 +5,7 @@ import LoadingComponent from "../components/usedComponents/LoadingComponent";
 import AdminHomePage from "../pages/Admin/AdminHomePage.jsx";
 import PrivateRoute from "./AdminAuthRoute.jsx";
 import AdminGalleryPage from "../pages/Admin/AdminGalleryPage.jsx";
+import AdminProfilePage from "../pages/Admin/AdminProfilePage.jsx";
 
 
 
@@ -65,6 +66,14 @@ export const router = createBrowserRouter([
             element:(
                 <PrivateRoute>
                     <AdminGalleryPage/>
+                </PrivateRoute>
+            )
+        },
+        {
+            path:"profile",
+            element:(
+                <PrivateRoute>
+                    <AdminProfilePage/>
                 </PrivateRoute>
             )
         }
