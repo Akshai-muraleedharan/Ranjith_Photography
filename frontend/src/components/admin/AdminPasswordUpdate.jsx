@@ -9,6 +9,7 @@ function AdminPasswordUpdate({setUpdatePassword}) {
   const [loading,setLoading] = useState(false)
   const[passwordVisible,setPasswordVisible] = useState(false)
   const[confirmPasswordVisible,setconfirmPasswordVisible] = useState(false)
+  const[oldPasswordVisible,setoldPasswordVisible] = useState(false)
 
     const { register, handleSubmit } = useForm();
 
@@ -35,9 +36,15 @@ function AdminPasswordUpdate({setUpdatePassword}) {
       setconfirmPasswordVisible((prev) => !prev)
     }
 
+    const oldPasswordHandle = () => {
+      setoldPasswordVisible((prev) => !prev)
+    }
+
     const pageReverse = () => {
         setUpdatePassword(false)
     }
+
+   
 
     setTimeout(()=>{
       setErrors("")
@@ -53,6 +60,16 @@ function AdminPasswordUpdate({setUpdatePassword}) {
 
          <h1 className=' text-2xl text-center font-semibold md:font-bold mb-10'>Change Password</h1>
         <form className="max-w-sm mx-auto" onSubmit={handleSubmit(onSubmit)}>
+        <div className="mb-5 relative">
+
+    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current password</label>
+    <input type={oldPasswordVisible ? "text" : "password"} {...register("oldPassword")}   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+   
+    <span className='absolute right-5 top-10 cursor-pointer' onClick={oldPasswordHandle}>
+      {oldPasswordVisible ? <FaEye/> : <FaEyeSlash/>}
+    </span>
+
+  </div>
 
         <div className="mb-5 relative">
     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">password</label>

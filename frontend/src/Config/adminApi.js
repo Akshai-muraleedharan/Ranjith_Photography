@@ -57,7 +57,8 @@ export const updateAdminPassword = async (data) => {
        await axiosInstance.put("/admin/profile/password",
         {
             password:data.password,
-            confirmPassword:data.confirmPassword
+            confirmPassword:data.confirmPassword,
+            oldPassword:data.oldPassword
             
         } 
         )

@@ -138,15 +138,23 @@ import cardModel from '../model/cardModel.js'
 
         export const UpdatePassword = async(req,res,next) => {
             try {
-                const {password,confirmPassword} = req.body
+                const {password,confirmPassword,oldPassword} = req.body
                 const verifiedAdmin = req.admin;
+                const oldPasswordTrim = oldPassword.trim()
 
-                if(!password || !confirmPassword){
+                if(!password || !confirmPassword || !oldPassword){
                     return res.status(400).json({success:false,message:"All field required"})
                 }
 
                 if(password.trim() !== confirmPassword.trim()){
                     return res.status(400).json({success:false,message:"Password not match"})
+                }
+                const userExist = await admin.findOne({email:verifiedAdmin})
+
+                const comparePassword = await bcrypt.compare(oldPasswordTrim,userExist.password)
+
+                if(!comparePassword){
+                    return res.status(400).json({success:false,message:"your Current password is not correct"})
                 }
 
                 const  passwordTrim = password.trim()
@@ -196,7 +204,7 @@ import cardModel from '../model/cardModel.js'
             const imageName = req.file.originalname
             const {imageType,bgType,screenType} = req.body
             
-            const result =  await  cloudinaryInstance.uploader.upload(req.file.path,{ folder: "photography/gallery" })
+            const result =  await  cloudinaryInstance.uploader.upload(req.file.path,{ folder: "photography/gallery" } )
                             .catch((err)=>{
                                 throw err
                             })
@@ -206,7 +214,7 @@ import cardModel from '../model/cardModel.js'
                 imageName:imageName,
                 publicId:result.public_id,
                 imageType:imageType,
-                ImageUrl:result.url,
+                ImageUrl:result.secure_url,
                 bgType:bgType,
                 screenType:screenType
                 
