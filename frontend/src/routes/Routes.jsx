@@ -5,6 +5,7 @@ import LoadingComponent from "../components/usedComponents/LoadingComponent";
 import AdminHomePage from "../pages/Admin/AdminHomePage.jsx";
 import PrivateRoute from "./AdminAuthRoute.jsx";
 import DashBoardDisplay from "../components/admin/dashboard/DashBoardDisplay.jsx";
+import AdminImageList from "../components/admin/dashboard/AdminImageList.jsx";
 
 
 
@@ -88,9 +89,14 @@ export const router = createBrowserRouter([
                {
                  path:"",
                  element:<DashBoardDisplay/>
-               }
+               },
+              
             ]
-        }
+        },
+        {
+            path:"image-list",
+            element:<AdminImageList/>
+          }
     ]
     }
     

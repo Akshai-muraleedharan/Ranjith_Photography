@@ -47,7 +47,7 @@ function GalleryComponent({gallery,filterLoading,loading,btnLoading,imageData,im
                     <div className='relative overflow-hidden'>
                       <div className='gallery_image_overlay'></div>
                       
-                     <img className='block w-full' src={image.ImageUrl} alt=""  loading="lazy" />
+                     <img className='block w-full' src={image.ImageUrl} alt={image.imageName}  loading="lazy" />
                     { btnLoading ?  <button onClick={()=> imagePopUp(image.ImageUrl)} className='animate_button absolute top-2 left-3 py-1 px-2 rounded bg-gradient-to-r from-black font-semibold text-white'>View</button> : ""}
                    </div>
                    ))}

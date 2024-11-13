@@ -5,10 +5,10 @@ import { Outlet } from 'react-router-dom'
 
 function AdminDashBoard() {
   return (
-    <div className='flex gap-5 pt-5 pb-5 px-10 max-[640px]:px-5'>
+    <div className='flex gap-5 pt-5 pb-5  px-10 max-[640px]:px-5'>
      <SideBar/>
 
-     <div><Outlet/></div>
+     <div ><Outlet/></div>
     </div>
   )
 }

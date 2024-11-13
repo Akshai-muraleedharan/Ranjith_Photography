@@ -29,13 +29,19 @@ function AdminSecureHeader() {
         
 
         <nav className='items-center flex'>
-        <ul className='flex gap-2 md:gap-4 '>
-            <NavLink
+        <ul className='flex gap-2 md:gap-4 items-baseline'>
+            <li>
+              <NavLink
             style={({isActive}) => {return {color : isActive ?  "skyblue" : ""}}}
              to={'/admin/home'} className='text-white nav-item text-[14px]'>Home</NavLink>
+             </li>
+
+             <li>
             <NavLink 
               style={({isActive}) => {return {color : isActive ? "skyblue" : ""}}}
              to={'/admin/gallery'} className='text-white nav-item text-[14px]'>Gallery</NavLink>
+             </li>
+
                   <div className="dropdown dropdown-bottom dropdown-end">
   <div tabIndex={0} role="button" className='text-white nav-item text-[14px]'>Admin</div>
   <ul tabIndex={0} className="dropdown-content text-md menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
