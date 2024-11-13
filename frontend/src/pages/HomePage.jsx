@@ -14,7 +14,7 @@ const About = lazy(() => import('../components/sections/About'));
 function HomePage() {
   return (
     <div className='bg-slate-100'>
-      <Link to={"https://wa.me/9207160407"} className='whatsapp_float'>
+      <Link to={"https://wa.me/+919207160407"} className='whatsapp_float'>
       <FaWhatsapp  className='whatsapp-icon'/>
       </Link>
       <Suspense fallback={<LoadingComponent/>}>
