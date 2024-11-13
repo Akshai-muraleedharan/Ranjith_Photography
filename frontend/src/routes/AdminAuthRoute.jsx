@@ -1,32 +1,37 @@
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { checkAdmin } from "../Config/adminApi";
-import useAuthStore from "../store/storeAuth";
+
 
 
 const PrivateRoute = ({ children }) => {
-  
+  const [admins,setAdmins] = useState()
   const location =useLocation()
   const navigate =useNavigate()
-    const { admin } = useAuthStore();
-    
+  
+ 
   
  
      const adminAuth =async () => {
        try {
-            await checkAdmin()
-      
+           await checkAdmin()
+
+           setAdmins(true) 
+            
       } catch (error) {
         navigate("/admin/login")
+        setAdmins(false) 
         console.error( error.response?.data || error.message);
        }
     }
 
+    
+
     useEffect(()=>{
       adminAuth()
-    },[location.pathname])
+    },[location.pathname,admins])
 
-    return admin ? children : <Navigate to="/admin/login" />;
+    return admins ? children : null;
   };
   
   export default PrivateRoute;

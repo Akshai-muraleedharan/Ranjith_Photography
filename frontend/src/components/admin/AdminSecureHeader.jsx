@@ -1,16 +1,26 @@
 import React from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import useAuthStore from '../../store/storeAuth';
+import { adminLogOut } from '../../Config/adminApi'
+
 
 
 function AdminSecureHeader() {
 
-  const {  logout } = useAuthStore();
+ 
   const navigate = useNavigate()
   const logoutBtn = () => {
-    logout()
-    navigate("/admin/login")
+    try {
+      adminLogOut()
+      navigate("/admin/login")
+     
+    } catch (error) {
+     
+      console.error( error.response?.data || error.message);
+    }
+   
   }
+
+  
 
   return (
     <header className='py-5 px-10 max-[640px]:px-5 flex justify-between items-baseline bg-[#3D4142]'>
@@ -30,7 +40,7 @@ function AdminSecureHeader() {
   <div tabIndex={0} role="button" className='text-white nav-item text-[14px]'>Admin</div>
   <ul tabIndex={0} className="dropdown-content text-md menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
     <li><Link to={"/admin/profile"}>profile</Link></li>
-    <li><p>Dashboard</p></li>
+    <li><Link to={"/admin/dashboard"}>Dashboard</Link></li>
     <li><span onClick={logoutBtn}>log-out</span></li>
   </ul>
 </div>

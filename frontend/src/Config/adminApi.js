@@ -68,3 +68,25 @@ export const updateAdminPassword = async (data) => {
         throw error
     }
 }
+
+
+export const adminGallery = async () => {
+    try {
+        const response = await axiosInstance.get("/admin/gallery")
+        return response.data
+    } catch (error) {
+        console.error("Registration error:", error.response?.data || error.message);
+        throw error
+    }
+}
+
+
+export const adminLogOut= async () => {
+    try {
+        await axiosInstance.post("/admin/logout")
+       
+    } catch (error) {
+        console.error("Registration error:", error.response?.data || error.message);
+        throw error
+    }
+}

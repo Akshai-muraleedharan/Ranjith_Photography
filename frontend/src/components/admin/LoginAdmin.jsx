@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import {useNavigate} from 'react-router-dom'
 import { adminLogin } from '../../Config/adminApi';
-import useAuthStore from '../../store/storeAuth';
 import {FaEye,FaEyeSlash} from 'react-icons/fa'
 
 
@@ -14,7 +13,7 @@ function LoginAdmin() {
 
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
-    const setUser = useAuthStore((state) => state.setUser)
+    
 
 
     const passwordHandle =() => {
@@ -24,8 +23,8 @@ function LoginAdmin() {
     const onSubmit = async (data) => {
      try {
       setLoading(true)
-      const response = await adminLogin(data)
-      setUser(response)
+       await adminLogin(data)
+      
       navigate("/admin/home") 
       setLoading(false)
      } catch (error) {

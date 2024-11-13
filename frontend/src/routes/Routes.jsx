@@ -4,10 +4,7 @@ import { lazy,Suspense } from 'react';
 import LoadingComponent from "../components/usedComponents/LoadingComponent";
 import AdminHomePage from "../pages/Admin/AdminHomePage.jsx";
 import PrivateRoute from "./AdminAuthRoute.jsx";
-import AdminGalleryPage from "../pages/Admin/AdminGalleryPage.jsx";
-import AdminProfilePage from "../pages/Admin/AdminProfilePage.jsx";
-
-
+import DashBoardDisplay from "../components/admin/dashboard/DashBoardDisplay.jsx";
 
 
 
@@ -15,6 +12,9 @@ import AdminProfilePage from "../pages/Admin/AdminProfilePage.jsx";
  const GalleryPage = lazy(() => import('../pages/GalleryPage'));
   const LoginAdmin = lazy(() => import('../components/admin/LoginAdmin.jsx'));
   const AdminLayout = lazy(() => import('../layout/AdminLayout.jsx'));
+  const AdminGalleryPage = lazy(() => import('../pages/Admin/AdminGalleryPage.jsx'));
+  const AdminProfilePage = lazy(() => import('../pages/Admin/AdminProfilePage.jsx'));
+  const AdminDashBoard = lazy(() => import('../pages/Admin/AdminDashBoard.jsx'));
 
 
 export const router = createBrowserRouter([
@@ -76,6 +76,20 @@ export const router = createBrowserRouter([
                     <AdminProfilePage/>
                 </PrivateRoute>
             )
+        },
+        {
+            path:"dashboard",
+            element:(
+                <PrivateRoute>
+                    <AdminDashBoard/>
+                </PrivateRoute>
+            ),
+            children:[
+               {
+                 path:"",
+                 element:<DashBoardDisplay/>
+               }
+            ]
         }
     ]
     }

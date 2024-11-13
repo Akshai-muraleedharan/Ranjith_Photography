@@ -6,6 +6,8 @@ import bookModel from "../model/userBookModel.js";
   export const galleryImage = async (req,res,next) => {
 
     try {
+
+      
        const fetchGallery = await gallery.find().select("-publicId");
        res.setHeader('Content-Disposition', 'inline');
        res.status(200).json({success:true,message:"successfully fetched",data:fetchGallery,dataLength:fetchGallery.length})

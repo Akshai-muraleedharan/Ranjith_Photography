@@ -257,10 +257,10 @@ import cardModel from '../model/cardModel.js'
    export const updateBg = async (req,res,next) => {
     try {
         const {imageId} = req.params
-        
+        const {screenType} = req.body
         const updateData = await gallery.findByIdAndUpdate(imageId,{
-            bgType:false,
-            screenType:"NIL"
+            bgType:true,
+            screenType:screenType
         }) 
  
        
@@ -356,3 +356,13 @@ export const deletFeature = async (req,res,next) => {
     }
 }
 
+export const galleryImage = async (req,res,next) => {
+
+    try {
+       const fetchGallery = await gallery.find().select("-publicId");
+       res.setHeader('Content-Disposition', 'inline');
+       res.status(200).json({success:true,message:"successfully fetched",data:fetchGallery,dataLength:fetchGallery.length})
+    } catch (error) {
+        next(error)
+    }
+  } 
