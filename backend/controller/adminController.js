@@ -254,6 +254,27 @@ import cardModel from '../model/cardModel.js'
         }
     }
 
+        // image search
+
+        export const searchImage = async (req,res,next) => {
+            try {
+        
+              const {image} = req.query
+        
+            
+            
+              const fetchSearchGallery = await gallery.find({imageType:image}).select("-publicId");
+              res.status(200).json({success:true,message:"data successfully fetched",data:fetchSearchGallery,dataLength:fetchSearchGallery.length})
+             
+               
+                 
+              
+              
+            } catch (error) {
+              next(error)
+            }
+          }
+
    export const updateBg = async (req,res,next) => {
     try {
         const {imageId} = req.params
@@ -355,6 +376,16 @@ export const deletFeature = async (req,res,next) => {
         next(error)
     }
 }
+
+export const adminGetCard = async (req,res,next) => {
+    try {
+        const fetchCard = await cardModel.find()
+  
+        res.status(200).json({success:true,message:"data fetched",data:fetchCard})
+    } catch (error) {
+        next(error)
+    }
+  }
 
 export const galleryImage = async (req,res,next) => {
 

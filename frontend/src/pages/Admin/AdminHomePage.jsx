@@ -1,9 +1,17 @@
 import React from 'react'
-import HomePage from '../HomePage'
+import AdminHeroSection from '../../components/admin/AdminHeroSection'
+import AdminPlanCardSection from '../../components/admin/AdminPlanCardSection'
+import About from '../../components/sections/About'
+
 
 function AdminHomePage() {
   return (
-    <HomePage/>
+   <div className='mb-5'>
+   <AdminHeroSection/>
+   <About/>
+   <AdminPlanCardSection/>
+  
+   </div>
   )
 }
 

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import PlanCard from "./PlanCard";
 import {motion} from "framer-motion"
-import { cardData } from "../../Config/userApi";
 import { pricePlans } from "../../assets/data/pricePlan";
-function PlanSection() {
+import { adminCardData } from "../../Config/adminApi";
+import PlanCard from "../sections/PlanCard";
+
+
+function AdminPlanCardSection() {
 
   const[card,setCard] =useState([])
 
   
   const fetchData = async () => {
     try {
-      const response = await cardData()
+      const response = await adminCardData()
       setCard(response)
 
       if(card.length === 0){
@@ -47,4 +49,4 @@ function PlanSection() {
   );
 }
 
-export default PlanSection;
+export default AdminPlanCardSection;

@@ -1,28 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { pricePlans } from "../../assets/data/pricePlan";
 import { motion } from "framer-motion";
-import { cardData } from "../../Config/userApi";
 
 
-function PlanCard() {
-  const[card,setCard] =useState([])
+
+function PlanCard({card}) {
+ 
   const[featureData,setfeatureData] = useState([])
   
 
-
-    const fetchData = async () => {
-      try {
-        const response = await cardData()
-        setCard(response)
-
-        if(card.length === 0){
-          setCard(pricePlans)
-        }
-        
-      } catch (error) {
-        console.error( error.response?.data || error.message);
-      }
-    }
 
    
 
@@ -32,11 +17,7 @@ function PlanCard() {
      setfeatureData(data)
     };
   
-    useEffect(()=>{
-      fetchData()
-
-      
-    },[])
+  
 
   
   return (

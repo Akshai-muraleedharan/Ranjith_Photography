@@ -69,6 +69,16 @@ export const updateAdminPassword = async (data) => {
     }
 }
 
+export const adminCardData = async () => {
+    try {
+      const response = await axiosInstance.get("/admin/package")
+      return response.data.data
+    } catch (error) {
+      console.error("Registration error:", error.response?.data || error.message);
+    }
+  }
+  
+
 
 export const adminGallery = async () => {
     try {
@@ -79,6 +89,23 @@ export const adminGallery = async () => {
         throw error
     }
 }
+
+export const adminSearchImage = async (data) => {
+    try {
+  
+     const searchResponse = await axiosInstance.get("/admin/search",{
+      params: {
+        image: data
+      }
+     })
+     
+     return searchResponse.data
+  
+    } catch (error) {
+     console.error("Registration error:", error.response?.data || error.message);
+     throw error
+    }
+  }
 
 
 export const adminLogOut= async () => {
