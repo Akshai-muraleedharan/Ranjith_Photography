@@ -43,7 +43,7 @@ function PlanCard({card}) {
           </div>
           <ul className="mt-5 space-y-4">
             {item.features.slice(0, 7).map((list) => (
-              <li>{list}</li>
+              <li key={list._id}>{list}</li>
             ))}
           </ul>
           {item.features.length > 6 ? (

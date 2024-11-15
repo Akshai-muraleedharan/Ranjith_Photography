@@ -10,12 +10,17 @@ function UserHeader() {
 
         <nav className='items:center flex'>
         <ul className='flex gap-4 '>
-            <NavLink
+           <li>
+           <NavLink
             style={({isActive}) => {return {color : isActive ?  "skyblue" : ""}}}
              to={'/'} className='text-white nav-item text-[14px]'>Home</NavLink>
-            <NavLink 
+           </li>
+           
+          <li>
+          <NavLink 
               style={({isActive}) => {return {color : isActive ? "skyblue" : ""}}}
              to={'gallery'} className='text-white nav-item text-[14px]'>Gallery</NavLink>
+          </li>
             
         </ul>
         </nav>

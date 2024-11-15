@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { adminGallery } from '../../../Config/adminApi';
+import { adminBackgroundUpdate, adminGallery, adminGalleryImageDelete } from '../../../Config/adminApi';
 import { Link } from 'react-router-dom';
+
 
 function AdminImageList() {
   const [gallery,setGallery] = useState([])
   const [imageData,setImageData] = useState('')
   const [imageName,setImageName] = useState('')
+  const [loading,setLoading] = useState(false)
+  const [deleteloading,setDeleteLoading] = useState(false)
+  const [deleteId,setDeleteId] = useState('')
+  const [updateId,setUpdateId] = useState('')
  
 
     const galleryFetch = async () => {
         try {
+           
          const response =   await adminGallery()
          setGallery(response.data)
+      
         } catch (error) {
+            setLoading(false)
             console.error("Registration error:", error.response?.data || error.message);
             throw error
         }
@@ -28,6 +36,37 @@ function AdminImageList() {
         setImageName("")
     }
 
+    const updateBackground =async (id,value) => {
+       try {
+        setLoading(true)
+        setUpdateId(id)
+        await adminBackgroundUpdate(id,value)
+        galleryFetch()
+        setLoading(false)
+        setUpdateId("")
+       } catch (error) {
+        setLoading(false)
+        console.error("Registration error:", error.response?.data || error.message);
+            throw error
+            
+       }
+    }
+
+    const deleteImage = async (id) => {
+       try {
+        setDeleteLoading(true)
+        setDeleteId(id)
+        await adminGalleryImageDelete(id)
+        galleryFetch()
+        setDeleteLoading(false)
+        setDeleteId("")
+       } catch (error) {
+        setDeleteLoading(false)
+        console.error("Registration error:", error.response?.data || error.message);
+            throw error
+       }
+    }
+
     useEffect(()=>{
     galleryFetch()
     },[])
@@ -39,7 +78,7 @@ function AdminImageList() {
 
 
 <div className='py-5 px-10 max-[640px]:px-5 relative'>
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg p-1">
+{  <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-1">
     <div class="pb-4 bg-white dark:bg-gray-900 flex gap-3 flex-col md:flex-row md:justify-between items-center">
         <div className='w-auto'>
         <label for="table-search" class="sr-only">Search</label>
@@ -101,11 +140,23 @@ function AdminImageList() {
                     <button onClick={()=>imageShown(item.ImageUrl,item.imageName)} className='py-1 px-4 border rounded border-slate-300'>View</button>
                 </td>
                 <td class="px-6 py-4">
-                {item.screenType}
+                
+{loading ? updateId === item._id ? <h3 className="font-semibold">Loading...</h3> : "" :  <form >
+  <label for="underline_select" class="sr-only">Underline select</label>
+  <select id="underline_select" onChange={(e)=>updateBackground(item._id,e.target.value)}>
+      <option selected disabled>{ item.screenType}</option>
+      <option value="tablet">tablet</option>
+      <option value="mobile">mobile</option>
+      <option value="Nil">Nil</option>
+     
+  </select>
+</form> }
+
+
                 </td>
                
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+                    <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline" onClick={()=> deleteImage(item._id)}>{deleteloading ? deleteId === item._id ? <h3 className="font-semibold">Loading.</h3> : "Remove" : "Remove" }</a>
                 </td>
             </tr>
             ))
@@ -125,7 +176,7 @@ function AdminImageList() {
                  </div>
               </div>
             )}
-</div>
+</div>}
 </div>
 
   )

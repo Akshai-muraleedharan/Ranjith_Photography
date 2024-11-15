@@ -29,7 +29,7 @@ function HeroSection() {
    return (
      <div className='relative'>
         {/* for mobile view */}
-      <div className='hero_image ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
+      <div className='hero_image   ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
       <div className="  image_overlay"></div>
         <div className='flex justify-center'>
         <div className='absolute bottom-20 text-center w-full max-w-md '>

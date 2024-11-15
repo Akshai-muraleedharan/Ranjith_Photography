@@ -4,8 +4,8 @@ import { lazy,Suspense } from 'react';
 import LoadingComponent from "../components/usedComponents/LoadingComponent";
 import AdminHomePage from "../pages/Admin/AdminHomePage.jsx";
 import PrivateRoute from "./AdminAuthRoute.jsx";
-import DashBoardDisplay from "../components/admin/dashboard/DashBoardDisplay.jsx";
-import AdminImageList from "../components/admin/dashboard/AdminImageList.jsx";
+
+
 
 
 
@@ -16,6 +16,8 @@ import AdminImageList from "../components/admin/dashboard/AdminImageList.jsx";
   const AdminGalleryPage = lazy(() => import('../pages/Admin/AdminGalleryPage.jsx'));
   const AdminProfilePage = lazy(() => import('../pages/Admin/AdminProfilePage.jsx'));
   const AdminDashBoard = lazy(() => import('../pages/Admin/AdminDashBoard.jsx'));
+  const AdminImageList = lazy(() => import('../components/admin/dashboard/AdminImageList.jsx'));
+  const DashBoardDisplay = lazy(() => import('../components/admin/dashboard/DashBoardDisplay.jsx'));
 
 
 export const router = createBrowserRouter([

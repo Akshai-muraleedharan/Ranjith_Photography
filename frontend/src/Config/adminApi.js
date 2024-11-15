@@ -79,6 +79,29 @@ export const adminCardData = async () => {
   }
   
 
+  export const adminBackgroundUpdate = async (id,value) => {
+    try {
+       
+       await axiosInstance.put(`/admin/photo/update/${id}`,{
+        screensType:value
+      })
+      
+    } catch (error) {
+      console.error("Registration error:", error.response?.data || error.message);
+    }
+  }
+
+  export const adminGalleryImageDelete = async (id) => {
+    try {
+       
+       await axiosInstance.delete(`/admin/photo/${id}`)
+      
+    } catch (error) {
+      console.error("Registration error:", error.response?.data || error.message);
+    }
+  }
+  
+
 
 export const adminGallery = async () => {
     try {

@@ -278,11 +278,37 @@ import cardModel from '../model/cardModel.js'
    export const updateBg = async (req,res,next) => {
     try {
         const {imageId} = req.params
-        const {screenType} = req.body
-        const updateData = await gallery.findByIdAndUpdate(imageId,{
-            bgType:true,
-            screenType:screenType
+        const {screensType} = req.body
+
+        
+
+       
+            const images = await gallery.find({screenType:screensType})
+
+        if(screensType === "mobile" || screensType === "tablet"){
+            const filter =  images.filter((item) => item.screenType === screensType)
+          
+
+            if(filter.length === 1){
+              return res.status(400).json({success:false,message:"image already exist"})
+            }
+        }
+         
+           
+         
+
+        if(screensType === "Nil"){
+    await gallery.findByIdAndUpdate(imageId,{
+            bgType:false,
+            screenType:screensType
         }) 
+        }else{
+            await gallery.findByIdAndUpdate(imageId,{
+                bgType:true,
+                screenType:screensType
+            }) 
+        }
+        
  
        
         res.status(200).json({success:true,message:"photo data updated successfully"})

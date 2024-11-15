@@ -23,7 +23,7 @@ router.post('/photo',authAdmin,upload.single('image'),imageChecker,addPhoto)
 router.put('/photo/update/:imageId',authAdmin,updateBg)
 router.put('/profile/update',authAdmin,updateProfile)
 router.put('/profile/password',authAdmin,UpdatePassword)
-router.delete('/:imageID',authAdmin,deleteImage)
+router.delete('/photo/:imageID',authAdmin,deleteImage)
 
 export default router
   

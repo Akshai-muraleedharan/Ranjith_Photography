@@ -2,18 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { adminProfile } from '../../Config/adminApi'
 import AdminUpdateProfile from '../../components/admin/AdminUpdateProfile'
 import AdminPasswordUpdate from '../../components/admin/AdminPasswordUpdate'
+import LoadingComponent from '../../components/usedComponents/LoadingComponent'
 
 function AdminProfilePage() {
  const[profile,setProfile] = useState([])
 const [update,setUpdate] = useState(false)
 const [updatePassword,setUpdatePassword] = useState(false)
-
+const [loading,setLoading] = useState(false)
 
   const fetchProfile =async () => {
     try {
+      setLoading(true)
       const response = await adminProfile()
       setProfile(response)
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       console.error( error.response?.data || error.message);
     }
   }
@@ -36,8 +40,8 @@ const [updatePassword,setUpdatePassword] = useState(false)
      <h1 className=' text-2xl text-center font-semibold md:font-bold mb-10'>Profile</h1>
 
         
-
-<div className="max-w-sm mx-auto my-auto ">
+{
+ loading ? <LoadingComponent/> : <div className="max-w-sm mx-auto my-auto ">
   <div className="mb-5">
     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Name</label>
     <h4 className='font-semibold py-1 px-2 border rounded'>{profile.username}</h4>
@@ -52,6 +56,8 @@ const [updatePassword,setUpdatePassword] = useState(false)
  </div>
   
 </div>
+
+}
 </div> 
 }
     </div>

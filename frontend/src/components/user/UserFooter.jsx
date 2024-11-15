@@ -8,7 +8,15 @@ import { FaFacebook } from "react-icons/fa";
 function UserFooter() {
   return (
     <footer className='py-3 px-10 max-[640px]:px-5 w-full bg-[#3D4142] mt-auto'>
-        {/* <div className='flex justify-between'>
+    
+       <p className='text-center text-xs text-white'>All Rights Reserved by Ranjith  Babu_Photography</p>
+    </footer>
+  )
+}
+
+
+
+    {/* <div className='flex justify-between'>
         <h2 className='text-white sm:hidden'>RB_Photography </h2>
         <h2 className='text-white logo  max-[640px]:hidden'>Ranjith Babu_Photography</h2>
 
@@ -24,9 +32,5 @@ function UserFooter() {
         <FaWhatsapp className='text-green-500 text-2xl'/>
         <FiInstagram className='rounded-md bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white text-2xl'/>
         </div> */}
-       <p className='text-center text-xs text-white'>All Rights Reserved by Ranjith  Babu_Photography</p>
-    </footer>
-  )
-}
 
 export default UserFooter

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import images from '../../assets/image/IMG-20241014-WA0038.jpg'
 import TabletImage from '../../assets/image/IMG-20241103-WA0021.jpg'
 import { adminGallery } from '../../Config/adminApi'
+import LoadingComponent from '../usedComponents/LoadingComponent'
 
 
 
@@ -9,15 +10,16 @@ import { adminGallery } from '../../Config/adminApi'
 function AdminHeroSection() {
 
   const [fetchBg,setFetchBg] = useState([])
- 
+  const [loading,setLoading] = useState(false)
   
     const bgImage = async () => {
       try {
-       
+        setLoading(true)
         const response = await adminGallery()
         setFetchBg(response.data)
-       
+        setLoading(false)
       } catch (error) {
+        setLoading(false)
         console.error("Registration error:", error.response?.data || error.message);
         throw error
       }
@@ -28,7 +30,7 @@ function AdminHeroSection() {
     },[])
 
    return (
-     <div className='relative'>
+    loading ? <LoadingComponent/> : <div className='relative'>
         {/* for mobile view */}
       <div className='hero_image ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
       <div className="  image_overlay"></div>

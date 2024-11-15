@@ -32,11 +32,7 @@ function About() {
       }}
        className="tracking-wide leading-7 font-semibold">I am a passionate wedding photographer dedicated to capturing timeless moments. With a blend of posed and candid styles, I focus on genuine emotions and unique stories. My goal is to create vibrant, true-to-color images that reflect the joy and love of your special day. Let's make memories!</motion.p>
     </div>
-    
-            
-      
  
-
     </div> 
   
   )
