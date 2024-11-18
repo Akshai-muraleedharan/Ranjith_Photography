@@ -5,7 +5,7 @@ const GalleryComponent = lazy(() => import('../components/usedComponents/Gallery
 function GalleryPage() {
 
   const [gallery,setGallery] = useState([])
-  const [loading,setLoading] = useState(false)
+  const [loading,setLoading] = useState(true)
   const [filterLoading,setFilterLoading] = useState(false)
   const [btnLoading,setBtnLoading] = useState(false)
   const [imageData,setImageData] = useState('')

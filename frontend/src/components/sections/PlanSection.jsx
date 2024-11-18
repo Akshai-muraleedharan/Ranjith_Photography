@@ -6,13 +6,13 @@ import { pricePlans } from "../../assets/data/pricePlan";
 function PlanSection() {
 
   const[card,setCard] =useState([])
-
+  const[loading,setLoading] = useState(true)
   
   const fetchData = async () => {
     try {
       const response = await cardData()
       setCard(response)
-
+       setLoading(false)
       if(card.length === 0){
         setCard(pricePlans)
       }
@@ -42,7 +42,7 @@ function PlanSection() {
           duration:1
         }}
         className="text-2xl font-bold max-w-[700px] mx-auto mb-10 md:mb-20 mt-2 text-center plan_card_heading md:text-4xl "> Please choose your perfect wedding packages   </motion.h1>
-      <PlanCard card={card}/>
+      <PlanCard card={card} loading={loading}/>
     </div>
   );
 }

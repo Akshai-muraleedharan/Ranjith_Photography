@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import PlanCardLoading from "../usedComponents/PlanCardLoading";
 
 
 
-function PlanCard({card}) {
+function PlanCard({card,loading}) {
  
   const[featureData,setfeatureData] = useState([])
   
@@ -33,7 +34,7 @@ function PlanCard({card}) {
         ease:"easeIn",
         duration:1
       }} className="grid lg:grid-cols-3 gap-8 mt-5 lg:mt-24">
-      {card.map((item) => (
+      {loading ? <PlanCardLoading/> : card.map((item) => (
         <div
           key={item.plan}
           className="border border-slate-200 p-8 shadow-lg bg-white rounded-2xl"

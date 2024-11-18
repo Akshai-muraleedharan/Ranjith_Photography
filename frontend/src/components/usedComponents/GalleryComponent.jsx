@@ -34,7 +34,7 @@ function GalleryComponent({gallery,filterLoading,loading,btnLoading,imageData,im
   return (
    loading ? <LoadingComponent/>  : <div className='p-3'>
        
-      <FilterHandle setGallery={setGallery} handleFilter={handleFilter} allCategories={allCategories} active={active} filterLoading={filterLoading} filter={filter} />
+      <FilterHandle setGallery={setGallery} handleFilter={handleFilter} loading={loading} allCategories={allCategories} active={active} filterLoading={filterLoading} filter={filter} />
   
         <ResponsiveMasonry
                 columnsCountBreakPoints={{320: 1, 750: 2, 900: 3}}

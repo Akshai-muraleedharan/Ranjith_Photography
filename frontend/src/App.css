@@ -27,6 +27,8 @@
   z-index: 1;
 }
 
+
+
 .tablet_view {
   background-position: center !important;
   background-size: cover !important;
@@ -38,6 +40,9 @@
 
 @media only screen and (min-width: 768px) {
   .hero_image {
+    display: none;
+  }
+  .hero_image_loading{
     display: none;
   }
 
@@ -56,6 +61,9 @@
 
 @media only screen and (max-width: 767px) {
   .tablet_Container {
+    display: none !important;
+  }
+  .tablet_view_loading{
     display: none !important;
   }
   .image_overlay {

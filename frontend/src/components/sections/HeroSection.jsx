@@ -15,7 +15,8 @@ function HeroSection() {
        
         const response = await backgroundImage()
         setFetchBg(response.data)
-        setLoading(false)
+        
+    setLoading(false)
       } catch (error) {
         setLoading(false)
         console.error("Registration error:", error.response?.data || error.message);
@@ -24,14 +25,13 @@ function HeroSection() {
     } 
 
     useEffect(()=>{
-      bgImage()
-     
+      bgImage()  
     },[])
 
    return (
      <div className='relative'>
         {/* for mobile view */}
-  { loading ? <div className="skeleton rounded-none  h-[90vh] w-full flex justify-center items-center"> <h2>loading...</h2></div>:   <div className='hero_image   ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
+  { loading ? <div className="hero_image_loading skeleton rounded-none  h-[90vh] w-full flex justify-center items-center"> <h2>loading...</h2></div>:   <div className='hero_image   ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
       <div className="  image_overlay"></div>
         <div className='flex justify-center'>
          <div className='absolute bottom-20 text-center w-full max-w-md '>
@@ -47,7 +47,7 @@ function HeroSection() {
     
      <div className='tablet_Container relative'>
          
-      {loading ? <div className="skeleton rounded-none  h-[90vh] w-full flex justify-center items-center"> <h2>loading...</h2></div> :   <div className='tablet_view  ' style={{background:`url(${fetchBg.find((img) => img.screenType === "tablet" && img.ImageUrl)?.ImageUrl || TabletImage})`}}>
+      {loading ? <div className="skeleton rounded-none tablet_view_loading  h-[90vh] w-full flex justify-center items-center"> <h2>loading...</h2></div> :   <div className='tablet_view  ' style={{background:`url(${fetchBg.find((img) => img.screenType === "tablet" && img.ImageUrl)?.ImageUrl || TabletImage})`}}>
         <div className="  image_overlay"></div> 
        <div className='absolute bottom-[10%] flex justify-center flex-col items-center w-full text-white'>
             <h2 className='text-4xl font-bold md:text-4xl lg:text-6xl'>Capturing Moments</h2>
