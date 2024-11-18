@@ -6,6 +6,7 @@ import validator from 'email-validator'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import cardModel from '../model/cardModel.js'
+import backgroundImage from "../model/backgroundImageModel.js"
 
 // admin register
 
@@ -174,6 +175,8 @@ import cardModel from '../model/cardModel.js'
             }
         }
 
+
+
         // authentication check
         export const checkAdmin = async (req, res, next) => {
             try {
@@ -188,6 +191,9 @@ import cardModel from '../model/cardModel.js'
                 next(error)
             }
           };
+
+
+
 
         // logout
         export const adminLogout =  (req,res,next) => {
@@ -254,6 +260,66 @@ import cardModel from '../model/cardModel.js'
         }
     }
 
+
+    // add background image
+
+    export const addBackground = async (req,res,next) => {
+        try {
+            // data from client
+        const imageName = req.file.originalname
+        const {screenType} = req.body
+        
+        const result =  await  cloudinaryInstance.uploader.upload(req.file.path,{ folder: "photography/background" } )
+                        .catch((err)=>{
+                            throw err
+                        })
+
+
+        const saveImage = await backgroundImage({
+            imageName:imageName,
+            publicId:result.public_id,        
+            ImageUrl:result.secure_url,
+            screenType:screenType
+            
+ 
+        })
+        await saveImage.save()
+
+        res.status(201).json({success:true,message:"image successfully updated"})
+        } catch (error) {
+        next(error) 
+        }
+    }
+
+    // delete backgroundimage
+
+    
+    export const deleteBackgroundImage = async (req,res,next) => {
+        
+        try {
+ 
+             const {imageID} = req.params
+
+             const fetchImage = await backgroundImage.findByIdAndDelete(imageID)
+
+            
+
+            const deleteResult = await cloudinaryInstance.uploader.destroy(fetchImage.publicId)
+                                    .catch((err)=>{
+                                        throw err
+                                    })
+            const result = deleteResult.result
+         
+ 
+            if(result === "ok"){
+                res.status(200).json({success:true,message:"image delete successfully"})
+            }
+        } catch (error) {
+            next(error) 
+        }
+    }
+
+
         // image search
 
         export const searchImage = async (req,res,next) => {
@@ -275,47 +341,7 @@ import cardModel from '../model/cardModel.js'
             }
           }
 
-   export const updateBg = async (req,res,next) => {
-    try {
-        const {imageId} = req.params
-        const {screensType} = req.body
 
-        
-
-       
-            const images = await gallery.find({screenType:screensType})
-
-        if(screensType === "mobile" || screensType === "tablet"){
-            const filter =  images.filter((item) => item.screenType === screensType)
-          
-
-            if(filter.length === 1){
-              return res.status(400).json({success:false,message:"image already exist"})
-            }
-        }
-         
-           
-         
-
-        if(screensType === "Nil"){
-    await gallery.findByIdAndUpdate(imageId,{
-            bgType:false,
-            screenType:screensType
-        }) 
-        }else{
-            await gallery.findByIdAndUpdate(imageId,{
-                bgType:true,
-                screenType:screensType
-            }) 
-        }
-        
- 
-       
-        res.status(200).json({success:true,message:"photo data updated successfully"})
-    } catch (error) {
-        next(error)
-    } 
-   } 
 
 
 //    card 
@@ -423,3 +449,13 @@ export const galleryImage = async (req,res,next) => {
         next(error)
     }
   } 
+
+  export const getBackgroundImage =async (req,res,next) => {
+    try {
+      const fetchGallery = await backgroundImage.find().select("-publicId");
+      res.setHeader('Content-Disposition', 'inline');
+      res.status(200).json({success:true,message:"successfully fetched",data:fetchGallery,dataLength:fetchGallery.length})
+    } catch (error) {
+      next(error)
+    }
+  }

@@ -15,6 +15,21 @@ import { axiosInstance } from "./Api";
    }
  }
 
+
+ export const backgroundImage = async () => {
+  try {
+
+   const response = await axiosInstance.get("/user/background")
+   
+    return response.data
+
+  } catch (error) {
+   console.error("Registration error:", error.response?.data || error.message);
+   throw error
+  }
+}
+
+
  export const searchImage = async (data) => {
   try {
 

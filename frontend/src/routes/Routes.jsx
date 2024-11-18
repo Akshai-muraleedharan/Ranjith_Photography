@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import UserLayout from "../layout/UserLayout";
 import { lazy,Suspense } from 'react';
 import LoadingComponent from "../components/usedComponents/LoadingComponent";
-import AdminHomePage from "../pages/Admin/AdminHomePage.jsx";
 import PrivateRoute from "./AdminAuthRoute.jsx";
 
 
@@ -18,6 +17,7 @@ import PrivateRoute from "./AdminAuthRoute.jsx";
   const AdminDashBoard = lazy(() => import('../pages/Admin/AdminDashBoard.jsx'));
   const AdminImageList = lazy(() => import('../components/admin/dashboard/AdminImageList.jsx'));
   const DashBoardDisplay = lazy(() => import('../components/admin/dashboard/DashBoardDisplay.jsx'));
+  const AdminHomePage = lazy(() => import('../pages/Admin/AdminHomePage.jsx'));
 
 
 export const router = createBrowserRouter([
@@ -32,15 +32,31 @@ export const router = createBrowserRouter([
         children:[
            {
             path:"",
-            element:<HomePage/>
+            
+            element:(
+                <Suspense fallback={<LoadingComponent/>}>   
+            <HomePage/>
+            </Suspense>
+            )
            },
            {
             path:"gallery",
-            element:<GalleryPage/>
+            element:
+            (
+                <Suspense fallback={<LoadingComponent/>}> 
+            <GalleryPage/>
+            </Suspense>
+        )
            },
            {
             path:"admin/login",
-            element:<LoginAdmin/>
+
+            element:
+            (
+                <Suspense fallback={<LoadingComponent/>}> 
+            <LoginAdmin/>
+            </Suspense>
+            )
            }
 
         ]
@@ -59,45 +75,65 @@ export const router = createBrowserRouter([
         {
             path:'home',
             element:(
+                <Suspense fallback={<LoadingComponent/>}>
                 <PrivateRoute>  
             <AdminHomePage/>
-            </PrivateRoute> 
+            </PrivateRoute>
+            </Suspense> 
         )
         },
         {
             path:'gallery',
             element:(
+                <Suspense fallback={<LoadingComponent/>}>
                 <PrivateRoute>
                     <AdminGalleryPage/>
                 </PrivateRoute>
+                  </Suspense> 
             )
         },
         {
             path:"profile",
             element:(
+                <Suspense fallback={<LoadingComponent/>}>
                 <PrivateRoute>
                     <AdminProfilePage/>
                 </PrivateRoute>
+                </Suspense> 
             )
         },
         {
             path:"dashboard",
             element:(
+                <Suspense fallback={<LoadingComponent/>}>
                 <PrivateRoute>
                     <AdminDashBoard/>
                 </PrivateRoute>
+                </Suspense> 
             ),
             children:[
                {
                  path:"",
-                 element:<DashBoardDisplay/>
+                 element:(
+                    <Suspense fallback={<LoadingComponent/>}>
+                    <PrivateRoute>
+                 <DashBoardDisplay/>
+                 </PrivateRoute>
+                 </Suspense> 
+                 )
                },
               
             ]
         },
         {
             path:"image-list",
-            element:<AdminImageList/>
+            element:(
+                <Suspense fallback={<LoadingComponent/>}>
+                <PrivateRoute>
+                <AdminImageList/>
+                </PrivateRoute>
+                </Suspense> 
+            )
           }
     ]
     }

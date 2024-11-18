@@ -1,3 +1,4 @@
+import backgroundImage from "../model/backgroundImageModel.js";
 import cardModel from "../model/cardModel.js";
 import gallery from "../model/galleryModel.js";
 import bookModel from "../model/userBookModel.js";
@@ -13,8 +14,18 @@ import bookModel from "../model/userBookModel.js";
        res.status(200).json({success:true,message:"successfully fetched",data:fetchGallery,dataLength:fetchGallery.length})
     } catch (error) {
         next(error)
-    }
+    } 
   } 
+
+  export const getBackgroundImage =async (req,res,next) => {
+    try {
+      const fetchGallery = await backgroundImage.find().select("-publicId");
+      res.setHeader('Content-Disposition', 'inline');
+      res.status(200).json({success:true,message:"successfully fetched",data:fetchGallery,dataLength:fetchGallery.length})
+    } catch (error) {
+      next(error)
+    }
+  }
 
   export const contactAdmin = async (req,res,next) => {
     try {

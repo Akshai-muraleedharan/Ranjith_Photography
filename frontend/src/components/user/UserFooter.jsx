@@ -1,9 +1,5 @@
 import React from 'react'
-import { FaPhoneAlt } from "react-icons/fa";
-import { IoMdMail } from "react-icons/io";
-import { FaWhatsapp } from "react-icons/fa";
-import { FiInstagram } from "react-icons/fi";
-import { FaFacebook } from "react-icons/fa";
+
 
 function UserFooter() {
   return (

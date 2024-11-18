@@ -2,7 +2,7 @@ import React from 'react'
 import { lazy,Suspense } from 'react';
 import { FaWhatsapp } from "react-icons/fa";
 import { Link } from 'react-router-dom'
-import LoadingComponent from '../components/usedComponents/LoadingComponent';
+
 
 
 
@@ -17,16 +17,23 @@ function HomePage() {
       <Link to={"https://wa.me/+919207160407"} className='whatsapp_float'>
       <FaWhatsapp  className='whatsapp-icon'/>
       </Link>
-      <Suspense fallback={<LoadingComponent/>}>
-    <HeroSection/>
 
+      <Suspense >
+    <HeroSection/>
+    </Suspense>
+ 
+    <Suspense >
     <About/>
-    
+    </Suspense>
+
+    <Suspense >
     <PlanSection/>
-    
+        </Suspense>
+
+        <Suspense >
     <ContactSection/> 
     </Suspense>
-    
+     
     </div>
   )
 }

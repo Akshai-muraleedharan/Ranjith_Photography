@@ -19,7 +19,7 @@ function SideBar() {
     {id:2, path:'/admin/image-list',name:"Image List", icon:TbUsers},
     {id:4, path:'movies',name:"Movies", icon:BiCameraMovie},
     {id:5, path:'theaters',name:"theaters", icon:GiTheater},
-    // {id:6, path:'/work',name:"Work plan", icon:SlCalender}
+  
   ]
   return (
     <div className='w-16 md:w-56 h-[77vh] rounded p-3 border border-slate-100 shadow-xl'>

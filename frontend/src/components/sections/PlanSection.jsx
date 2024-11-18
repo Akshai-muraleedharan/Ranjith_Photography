@@ -41,7 +41,7 @@ function PlanSection() {
           ease:"easeIn",
           duration:1
         }}
-        className="text-2xl font-bold mb-5 mt-2 text-center plan_card_heading lg:text-4xl"> Please choose your perfect packages   </motion.h1>
+        className="text-2xl font-bold max-w-[700px] mx-auto mb-10 md:mb-20 mt-2 text-center plan_card_heading md:text-4xl "> Please choose your perfect wedding packages   </motion.h1>
       <PlanCard card={card}/>
     </div>
   );

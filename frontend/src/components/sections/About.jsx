@@ -16,7 +16,7 @@ function About() {
         duration:1
       }}
 
-     className='mt-10  font-bold text-4xl relative'>About </motion.h1>
+     className='mt-10  font-bold text-2xl md:text-4xl relative'>About </motion.h1>
 
     <div className='text-center lg:max-w-3xl '>
       <motion.p 

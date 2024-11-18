@@ -1,3 +1,4 @@
+
 import gallery from "../model/galleryModel.js"
 
 
@@ -21,3 +22,4 @@ export const imageChecker = async (req,res,next) => {
             res.status(error.statusCode || 400).json(error.message || "internal server error")
         }
 } 
+

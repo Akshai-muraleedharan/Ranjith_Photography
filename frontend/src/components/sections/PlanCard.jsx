@@ -9,6 +9,7 @@ function PlanCard({card}) {
   
 
 
+
    
 
     const showmodel = (id) => {
@@ -34,7 +35,7 @@ function PlanCard({card}) {
       }} className="grid lg:grid-cols-3 gap-8 mt-5 lg:mt-24">
       {card.map((item) => (
         <div
-          key={item._id}
+          key={item.plan}
           className="border border-slate-200 p-8 shadow-lg bg-white rounded-2xl"
         >
           <h3 className="text-lg font-bold leading-5">{item.plan}</h3>
@@ -42,8 +43,8 @@ function PlanCard({card}) {
             <p className="mt-5 font-semibold leading-4">₹ {item.amount}</p>
           </div>
           <ul className="mt-5 space-y-4">
-            {item.features.slice(0, 7).map((list) => (
-              <li key={list._id}>{list}</li>
+            {item.features.slice(0, 7).map((list,index) => (
+              <li key={index}>{list}</li>
             ))}
           </ul>
           {item.features.length > 6 ? (
@@ -64,8 +65,8 @@ function PlanCard({card}) {
                   </form>
                   
                   <ul className="py-4 space-y-2">
-                  {featureData?.features?.slice(7).map((list)=>(
-                    <li key={list._id}>{list}</li>
+                  {featureData?.features?.slice(7).map((list,index)=>(
+                    <li key={index}>{list}</li>
                   ))}
                   </ul>
                 </div>

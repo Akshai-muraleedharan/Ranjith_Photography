@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import GalleryComponent from '../components/usedComponents/GalleryComponent'
+import React, { useEffect, useState,lazy,Suspense } from 'react'
 import { galleryImage, searchImage } from '../Config/userApi'
+const GalleryComponent = lazy(() => import('../components/usedComponents/GalleryComponent'));
 
 function GalleryPage() {
 
@@ -76,8 +76,9 @@ function GalleryPage() {
     },[])
   return (
     <div>
-      
+      <Suspense>
     <GalleryComponent gallery={ gallery} filterLoading={filterLoading} loading={loading} handleFilter={handleFilter} allCategories={allCategories} active={active} filter={filter} setGallery={setGallery} btnLoading={btnLoading} imageData={imageData} imagePopUp={imagePopUp} CloseModel={CloseModel}  />
+    </Suspense>
     </div>
   )
 }

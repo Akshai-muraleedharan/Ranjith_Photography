@@ -113,6 +113,16 @@ export const adminGallery = async () => {
     }
 }
 
+export const adminBackGround = async () => {
+    try {
+        const response = await axiosInstance.get("/admin/background")
+        return response.data
+    } catch (error) {
+        console.error("Registration error:", error.response?.data || error.message);
+        throw error
+    }
+}
+
 export const adminSearchImage = async (data) => {
     try {
   

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import images from '../../assets/image/IMG-20241014-WA0038.jpg'
 import TabletImage from '../../assets/image/IMG-20241103-WA0021.jpg'
-import { adminGallery } from '../../Config/adminApi'
+import { adminBackGround, adminGallery } from '../../Config/adminApi'
 import LoadingComponent from '../usedComponents/LoadingComponent'
 
 
@@ -15,7 +15,7 @@ function AdminHeroSection() {
     const bgImage = async () => {
       try {
         setLoading(true)
-        const response = await adminGallery()
+        const response = await adminBackGround()
         setFetchBg(response.data)
         setLoading(false)
       } catch (error) {
