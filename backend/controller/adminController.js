@@ -208,8 +208,12 @@ import backgroundImage from "../model/backgroundImageModel.js"
             try {
                 // data from client
             const imageName = req.file.originalname
-            const {imageType,bgType,screenType} = req.body
+            const {imageType} = req.body
             
+            if(imageType === "selectimagetype"){
+                return res.status(400).json({success:false,messgae:"please select image type"})
+            }
+           
             const result =  await  cloudinaryInstance.uploader.upload(req.file.path,{ folder: "photography/gallery" } )
                             .catch((err)=>{
                                 throw err
@@ -221,8 +225,7 @@ import backgroundImage from "../model/backgroundImageModel.js"
                 publicId:result.public_id,
                 imageType:imageType,
                 ImageUrl:result.secure_url,
-                bgType:bgType,
-                screenType:screenType
+                
                 
 
             })
@@ -267,7 +270,7 @@ import backgroundImage from "../model/backgroundImageModel.js"
         try {
             // data from client
         const imageName = req.file.originalname
-        const {screenType} = req.body
+        const {screenType} = req.body 
         
         const result =  await  cloudinaryInstance.uploader.upload(req.file.path,{ folder: "photography/background" } )
                         .catch((err)=>{
@@ -457,5 +460,20 @@ export const galleryImage = async (req,res,next) => {
       res.status(200).json({success:true,message:"successfully fetched",data:fetchGallery,dataLength:fetchGallery.length})
     } catch (error) {
       next(error)
+    }
+  }
+
+
+  export const getImageSearch = async (req,res,next) => {
+    try{
+     const {search} = req.query || ''
+    const query = search.toLowerCase()
+     const imageFilter = await gallery.find().select("-publicId");
+
+      const filteredData = imageFilter.filter(item=> item.imageName.toLowerCase().includes(query) || item.imageType.toLowerCase().includes(query) )
+
+      res.status(200).json({success:true,message:"successfully fetched",data:filteredData})
+    }catch(error){
+        next(error) 
     }
   }

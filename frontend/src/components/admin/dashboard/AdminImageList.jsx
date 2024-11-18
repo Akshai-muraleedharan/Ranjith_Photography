@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { adminBackgroundUpdate, adminGallery, adminGalleryImageDelete } from '../../../Config/adminApi';
-import { Link } from 'react-router-dom';
+
+import AdminListSearch from './AdminListSearch';
 
 
 function AdminImageList() {
@@ -36,21 +37,7 @@ function AdminImageList() {
         setImageName("")
     }
 
-    const updateBackground =async (id,value) => {
-       try {
-        setLoading(true)
-        setUpdateId(id)
-        await adminBackgroundUpdate(id,value)
-        galleryFetch()
-        setLoading(false)
-        setUpdateId("")
-       } catch (error) {
-        setLoading(false)
-        console.error("Registration error:", error.response?.data || error.message);
-            throw error
-            
-       }
-    }
+   
 
     const deleteImage = async (id) => {
        try {
@@ -79,21 +66,7 @@ function AdminImageList() {
 
 <div className='py-5 px-10 max-[640px]:px-5 relative'>
 {  <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-1">
-    <div class="pb-4 bg-white dark:bg-gray-900 flex gap-3 flex-col md:flex-row md:justify-between items-center">
-        <div className='w-auto'>
-        <label for="table-search" class="sr-only">Search</label>
-        <div class="relative mt-1">
-            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                </svg>
-            </div>
-            <input type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-64 md:w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-/blue-500 dark:focus:border-blue-500" placeholder="Search for items"/>
-        </div>
-        </div>
-
-        <div className='p-1 border border-slate-500 rounded'><Link to={"/admin/dashboard"}>Go Back</Link></div>
-    </div>
+    <AdminListSearch setGallery={setGallery}/>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -110,10 +83,14 @@ function AdminImageList() {
                     Image Type
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    image
+                    Image
                 </th>
                 <th scope="col" class="px-6 py-3">
-                   Screen Type
+                   Post Date
+                </th>
+             
+                <th scope="col" class="px-6 py-3">
+                   Update Date
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Action
@@ -121,7 +98,7 @@ function AdminImageList() {
             </tr>
         </thead>
         <tbody>
-           {
+           {gallery.length === 0 ? <h1 className='font-bold text-red-500 '>no data found</h1> :
             gallery.map((item)=>(
                 <tr key={item._id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td class="w-4 p-4">
@@ -139,20 +116,13 @@ function AdminImageList() {
                 <td class="px-6 py-4">
                     <button onClick={()=>imageShown(item.ImageUrl,item.imageName)} className='py-1 px-4 border rounded border-slate-300'>View</button>
                 </td>
+           
                 <td class="px-6 py-4">
-                
-{loading ? updateId === item._id ? <h3 className="font-semibold">Loading...</h3> : "" :  <form >
-  <label for="underline_select" class="sr-only">Underline select</label>
-  <select id="underline_select" onChange={(e)=>updateBackground(item._id,e.target.value)}>
-      <option selected disabled>{ item.screenType}</option>
-      <option value="tablet">tablet</option>
-      <option value="mobile">mobile</option>
-      <option value="Nil">Nil</option>
-     
-  </select>
-</form> }
+                    { item.createdAt.split('T')[0].split('-').reverse().join('/') }
+                </td>
 
-
+                <td class="px-6 py-4">
+                    { item.updatedAt.split('T')[0].split('-').reverse().join('/') }
                 </td>
                
                 <td class="px-6 py-4">

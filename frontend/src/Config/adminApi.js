@@ -150,3 +150,35 @@ export const adminLogOut= async () => {
         throw error
     }
 }
+
+
+export const adminImageList= async (query) => {
+    try {
+       
+      const response =  await axiosInstance.get(`/admin/searchImage?search=${query}`)
+
+      return response.data.data
+       
+    } catch (error) {
+        console.error("Registration error:", error.response?.data || error.message);
+        throw error
+    }
+}
+
+
+export const adminImagePost = async (formData) => {
+    try {
+       
+      const response =  await axiosInstance.post('/admin/photo',formData,{
+        headers: {
+            "Content-Type": "multipart/form-data",
+          },
+      })
+      return response
+       
+
+    } catch (error) {
+        console.error("Registration error:", error.response?.data || error.message);
+        throw error
+    }
+}

@@ -30,9 +30,9 @@ function AdminHeroSection() {
     },[])
 
    return (
-    loading ? <LoadingComponent/> : <div className='relative'>
+ <div className='relative'>
         {/* for mobile view */}
-      <div className='hero_image ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
+   {    loading ? <div className="hero_image_loading skeleton rounded-none  h-[90vh] w-full flex justify-center items-center"> <h2>loading...</h2></div> :     <div className='hero_image ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
       <div className="  image_overlay"></div>
         <div className='flex justify-center'>
         <div className='absolute bottom-20 text-center w-full max-w-md '>
@@ -44,13 +44,13 @@ function AdminHeroSection() {
         </div>
         </div>
        
-      </div>
+      </div>}
     
     <div className='tablet_Container relative'>
        
 
        
-        <div className='tablet_view  ' style={{background:`url(${fetchBg.find((img) => img.screenType === "tablet" && img.ImageUrl)?.ImageUrl || TabletImage})`}}>
+    {  loading ? <div className="tablet_view_loading  h-[90vh] w-full flex justify-center items-center"> <span className="loading loading-dots bg-red-500 loading-lg"></span></div> :     <div className='tablet_view  ' style={{background:`url(${fetchBg.find((img) => img.screenType === "tablet" && img.ImageUrl)?.ImageUrl || TabletImage})`}}>
         <div className="  image_overlay"></div>
       <div className='absolute bottom-[10%] flex justify-center flex-col items-center w-full text-white'>
             <h2 className='text-4xl font-bold md:text-4xl lg:text-6xl'>Capturing Moments</h2>
@@ -58,7 +58,7 @@ function AdminHeroSection() {
 
           <h4 className='text-[16px] mt-4 font-semibold '>Ranjith Babu_Photography</h4>
       </div>
-        </div>
+        </div>}
     </div>
     </div>
 

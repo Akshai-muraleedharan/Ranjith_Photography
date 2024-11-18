@@ -17,8 +17,9 @@ const gallerySchema = mongoose.Schema({
     ImageUrl:{
         type:String
     },
- 
-})
+    },
+    {timestamps:true}
+)
 
 const gallery = mongoose.model('gallery',gallerySchema)
 

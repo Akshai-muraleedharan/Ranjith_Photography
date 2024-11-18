@@ -5,12 +5,13 @@ import gallery from "../model/galleryModel.js"
 export const imageChecker = async (req,res,next) => {
         try {
 
-            const imageName = req.file.originalname
-
+           
             if(!req.file){
                 return res.status(400).json({success:false,message:"file is empty"})
             }
-           
+
+            const imageName = req.file.originalname
+
             const imageExist = await gallery.findOne({imageName:imageName})
 
             if(imageExist){

@@ -17,7 +17,7 @@ function SideBar() {
   const sideBar_link =[
     {id:1, path:'',name:"Dashboard", icon:LuBox},
     {id:2, path:'/admin/image-list',name:"Image List", icon:TbUsers},
-    {id:4, path:'movies',name:"Movies", icon:BiCameraMovie},
+    {id:4, path:'/admin/image-post',name:"image", icon:BiCameraMovie},
     {id:5, path:'theaters',name:"theaters", icon:GiTheater},
   
   ]

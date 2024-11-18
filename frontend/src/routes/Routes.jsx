@@ -3,6 +3,7 @@ import UserLayout from "../layout/UserLayout";
 import { lazy,Suspense } from 'react';
 import LoadingComponent from "../components/usedComponents/LoadingComponent";
 import PrivateRoute from "./AdminAuthRoute.jsx";
+import AdminGalleryImagePost from "../components/admin/dashboard/AdminGalleryImagePost.jsx";
 
 
 
@@ -133,6 +134,16 @@ export const router = createBrowserRouter([
                 <AdminImageList/>
                 </PrivateRoute>
                 </Suspense> 
+            )
+          },
+          {
+            path:"image-post",
+            element:(
+                <Suspense fallback={<LoadingComponent/>}>
+                <PrivateRoute>
+                <AdminGalleryImagePost/>
+                </PrivateRoute>
+                </Suspense>  
             )
           }
     ]

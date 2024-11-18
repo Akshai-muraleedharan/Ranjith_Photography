@@ -1,5 +1,5 @@
 import express from 'express'
-import { addPhoto, adminLogin, adminLogout,checkAdmin, adminProfile, adminRegister, deleteCard, deleteImage, deletFeature, packageCard,  updateCard, updateProfile, UpdatePassword, galleryImage, searchImage, adminGetCard, addBackground, deleteBackgroundImage, getBackgroundImage } from '../../controller/adminController.js'
+import { addPhoto, adminLogin, adminLogout,checkAdmin, adminProfile, adminRegister, deleteCard, deleteImage, deletFeature, packageCard,  updateCard, updateProfile, UpdatePassword, galleryImage, searchImage, adminGetCard, addBackground, deleteBackgroundImage, getBackgroundImage, getImageSearch } from '../../controller/adminController.js'
 import { upload } from '../../middleware/imageUploadMiddleware.js'
 import { imageChecker } from '../../middleware/imageFileCheck.js'
 import checkError from '../../middleware/loginAndSignupError.js'
@@ -16,6 +16,7 @@ router.put('/package/update/:cardId',authAdmin,updateCard)
 router.put('/package/features/:cardId',authAdmin,deletFeature)
 router.get('/profile',authAdmin, adminProfile)
 router.get('/package',authAdmin, adminGetCard)
+router.get('/searchImage',authAdmin, getImageSearch)
 router.get('/check',authAdmin, checkAdmin)
 router.get('/gallery',authAdmin, galleryImage)
 router.get('/background',authAdmin, getBackgroundImage)

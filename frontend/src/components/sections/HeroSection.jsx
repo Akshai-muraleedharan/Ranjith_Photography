@@ -18,7 +18,7 @@ function HeroSection() {
         
     setLoading(false)
       } catch (error) {
-        setLoading(false)
+        
         console.error("Registration error:", error.response?.data || error.message);
         throw error
       }
@@ -31,7 +31,7 @@ function HeroSection() {
    return (
      <div className='relative'>
         {/* for mobile view */}
-  { loading ? <div className="hero_image_loading skeleton rounded-none  h-[90vh] w-full flex justify-center items-center"> <h2>loading...</h2></div>:   <div className='hero_image   ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
+  { loading ? <div className="hero_image_loading skeleton rounded-none  h-[90vh] w-full flex justify-center items-center"> <h2>loading...</h2></div>:   <div className='hero_image ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
       <div className="  image_overlay"></div>
         <div className='flex justify-center'>
          <div className='absolute bottom-20 text-center w-full max-w-md '>
