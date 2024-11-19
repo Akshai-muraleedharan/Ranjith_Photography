@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom'
 function UserHeader() {
   return (
     <header className='py-5 px-10 max-[640px]:px-5 flex justify-between items:center bg-[#3D4142]'>
-        <h2 className='text-white sm:hidden'>RB_Photography </h2>
-        <h2 className='text-white logo  max-[640px]:hidden'>Ranjith Babu_Photography</h2>
+        <h1 className='logo_mobile '>RB_Photography </h1>
+        <h1 className='text-white logo  max-[767px]:hidden'>Ranjith Babu_Photography</h1>
         
 
         <nav className='items:center flex'>

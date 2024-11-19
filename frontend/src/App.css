@@ -5,29 +5,37 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  font-display: swap;
 }
 
 .logo {
   font-family: "Tenor Sans", sans-serif;
 }
 
+.logo_mobile{
+  color: white; 
+}
 .nav-item {
   font-family: "Roboto", serif;
   font-style: 400;
 }
 
 /* hero section */
-
 .hero_image {
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
+  background-position: center center;
   width: 100%;
   height: 90vh;
   z-index: 1;
 }
 
-
+.caption{
+  font-size: 30px;
+  font-weight: 600;
+   color: white;
+}
 
 .tablet_view {
   background-position: center !important;
@@ -45,7 +53,9 @@
   .hero_image_loading{
     display: none;
   }
-
+  .logo_mobile{
+    display: none;
+  }
   .image_overlay {
     width: 100%;
     height: 100%;
@@ -167,7 +177,6 @@ img {
     padding: 0px 10px 0px 10px;
   }
 }
-
 
 /* whatsup icon */
 

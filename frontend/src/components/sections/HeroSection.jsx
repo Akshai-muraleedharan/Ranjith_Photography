@@ -24,6 +24,7 @@ function HeroSection() {
       }
     } 
 
+    
     useEffect(()=>{
       bgImage()  
     },[])
@@ -31,12 +32,13 @@ function HeroSection() {
    return (
      <div className='relative'>
         {/* for mobile view */}
-  { loading ? <div className="hero_image_loading skeleton rounded-none  h-[90vh] w-full flex justify-center items-center"> <h2>loading...</h2></div>:   <div className='hero_image ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
-      <div className="  image_overlay"></div>
+  { loading ? <div className="hero_image_loading skeleton rounded-none  h-[90vh] w-full flex justify-center items-center"> <h2>loading...</h2></div>:  
+   <div className='hero_image ' style={{background:`url(${fetchBg.find((img) => img.screenType === "mobile" && img.ImageUrl)?.ImageUrl || images})`}}>
+      <div className="  image_overlay "></div>
         <div className='flex justify-center'>
          <div className='absolute bottom-20 text-center w-full max-w-md '>
             
-        <h2  className='text-[30px] font-semibold text-white'>Capturing Moments</h2>
+        <h2  className='caption'>Capturing Moments</h2>
      <h3 className='mt-1 text-end mr-4 text-2xl font-semibold text-white'>Creating Memories</h3>
 
      <h4 className='text-[14px] mt-2 font-semibold text-end mr-5 text-white'>Ranjith Babu_Photography</h4>

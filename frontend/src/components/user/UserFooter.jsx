@@ -5,7 +5,7 @@ function UserFooter() {
   return (
     <footer className='py-3 px-10 max-[640px]:px-5 w-full bg-[#3D4142] mt-auto'>
     
-       <p className='text-center text-xs text-white'>All Rights Reserved by Ranjith  Babu_Photography</p>
+       {/* <p className='text-center text-xs text-white'>All Rights Reserved by Ranjith  Babu_Photography</p> */}
     </footer>
   )
 }
