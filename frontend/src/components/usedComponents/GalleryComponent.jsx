@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
+
+
 import FilterHandle from './FilterHandle'
 import LoadingComponent from './LoadingComponent'
 
@@ -36,25 +36,25 @@ function GalleryComponent({gallery,filterLoading,loading,btnLoading,imageData,im
        
       <FilterHandle setGallery={setGallery} handleFilter={handleFilter} loading={loading} allCategories={allCategories} active={active} filterLoading={filterLoading} filter={filter} />
   
-        <ResponsiveMasonry
-                columnsCountBreakPoints={{320: 1, 750: 2, 900: 3}}
-            >
-                <Masonry gutter='20px'  options={{
-     columnWidth: 1,
-  }}>
-         
-                   {gallery.map((image)=>(
+     
+<div className="columns-1 sm:columns-2 md:columns-3 lg:columns-3 gap-4 " style={{columnGap:"18px"}}>
+   
+    {gallery.map((image)=>(
+      
                     <div key={image._id} className='relative overflow-hidden'>
                       <div className='gallery_image_overlay'></div>
                       
-                     <img className='block w-full' src={image.ImageUrl} alt={image.imageName}  loading="lazy" />
+                     <img className='h-auto max-w-full mb-4' src={image.ImageUrl} alt={image.imageName}  loading="lazy" />
                     { btnLoading ?  <button onClick={()=> imagePopUp(image.ImageUrl)} className='animate_button absolute top-2 left-3 py-1 px-2 rounded bg-gradient-to-r from-black font-semibold text-white'>View</button> : ""}
                    </div>
+                  
                    ))}
                
-                </Masonry>
-            </ResponsiveMasonry>
+   
 
+   
+  
+    </div>
 
             {imageData && (
               <div className='model_overlay'>

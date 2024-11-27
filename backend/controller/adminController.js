@@ -270,7 +270,7 @@ import backgroundImage from "../model/backgroundImageModel.js"
         try {
             // data from client
         const imageName = req.file.originalname
-        const {screenType} = req.body 
+        const {screenSize} = req.body 
         
         const result =  await  cloudinaryInstance.uploader.upload(req.file.path,{ folder: "photography/background" } )
                         .catch((err)=>{
@@ -282,7 +282,7 @@ import backgroundImage from "../model/backgroundImageModel.js"
             imageName:imageName,
             publicId:result.public_id,        
             ImageUrl:result.secure_url,
-            screenType:screenType
+            screenSize:screenSize
             
  
         })

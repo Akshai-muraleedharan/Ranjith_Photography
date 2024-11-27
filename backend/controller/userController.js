@@ -19,8 +19,9 @@ import bookModel from "../model/userBookModel.js";
 
   export const getBackgroundImage =async (req,res,next) => {
     try {
-      const fetchGallery = await backgroundImage.find().select("-publicId");
-      res.setHeader('Content-Disposition', 'inline');
+     
+      const fetchGallery = await backgroundImage.find();
+     
       res.status(200).json({success:true,message:"successfully fetched",data:fetchGallery,dataLength:fetchGallery.length})
     } catch (error) {
       next(error)

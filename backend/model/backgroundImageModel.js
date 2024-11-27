@@ -20,7 +20,7 @@ const backgroundImageSchema = mongoose.Schema({
         default:false
     },
 
-    screenType:{
+    screenSize:{
         type:String,
         
     }

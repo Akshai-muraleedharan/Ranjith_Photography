@@ -3,7 +3,7 @@ import backgroundImage from "../model/backgroundImageModel.js"
 export const backgroundImageChecker = async (req,res,next) => {
     try {
 
-        const {screenType} = req.body 
+        const {screenSize} = req.body 
 
         if(!req.file){
             return res.status(400).json({success:false,message:"file is empty"})
@@ -21,10 +21,10 @@ export const backgroundImageChecker = async (req,res,next) => {
             return res.status(400).json({success:false,message:"This image already upload"})
         }
 
-        const screenTypeExist = await backgroundImage.findOne({screenType:screenType})
+        const screenTypeExist = await backgroundImage.findOne({screenSize:screenSize})
 
         if(screenTypeExist){
-            return res.status(400).json({success:false,message:`${screenType} screen already exist`})
+            return res.status(400).json({success:false,message:`${screenSize}px screen-size already exist`})
         }
 
         next()
